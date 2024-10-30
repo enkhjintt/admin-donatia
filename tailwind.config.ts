@@ -13,13 +13,18 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        montserrat: ["Montserrat"],
+        sans: ["Montserrat", "sans-serif"],
       },
       colors: {
         "text-dark": "rgb(215, 217, 227)",
         green: "#02815A",
         yellow: "#eca232",
         red: "#ec323d",
+        blue: "#0070F0",
+      },
+      backgroundImage: {
+        "primary-img-light": "url('/image/background.png')",
+        "primary-img-dark": "url('/image/menu.svg')",
       },
 
       flex: {
@@ -72,15 +77,6 @@ const config: Config = {
       },
       secondary: {
         normal: "rgba(var(--color-secondary) / <alpha-value>)",
-      },
-      pink: {
-        normal: "rgba(var(--color-pink) / <alpha-value>)",
-      },
-      blue: {
-        normal: "rgba(var(--color-blue-rgb) / <alpha-value>)",
-      },
-      third: {
-        normal: "rgba(var(--color-third) / <alpha-value>)",
       },
       error: {
         normal: "rgba(var(--color-error) / <alpha-value>)",

@@ -1,50 +1,63 @@
 "use client";
 
-import { Suspense, useState, useEffect, useMemo } from "react";
+import { Suspense, useState, useMemo } from "react";
 import { Spin } from "antd";
 
+import SideBar from "@/components/layout/sidebar/sidebar";
 import TopBar from "@/components/layout/topbar/topbar";
 
-import Foot from "@/components/layout/footer/footer";
-
-export default function HomeLayout({
+export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const [collapsed, setCollapsed] = useState(false);
+
+  const toggleCollapsed = () => {
+    setCollapsed(!collapsed);
+  };
+
+  // Check if the page is a login page
   const isLoginPage = useMemo(() => {
     return (children as any)?.type?.displayName === "LoginPage";
   }, [children]);
 
   return (
-    <div className="font-montserrat">
+    <div>
       {isLoginPage ? (
         <div>{children}</div>
       ) : (
-        <div className="w-full h-screen ">
-          <div className={` w-full`}>
-            <TopBar />
-            <div className="pb-40">
-              <Suspense
-                fallback={
-                  <div className="fixed z-50 inset-0 gap-4 flex flex-col items-center justify-center bg-opacity-10 backdrop-blur-lg">
-                    <Spin size="large" />
-                    <h1 className="color-primary text-xl">
-                      Мэдээлэл шинэчилж байна түр хүлээнэ үү!
-                    </h1>
-                  </div>
-                }
-              >
-                <div>
-                  {/* <NotificationModal /> */}
+        <div className="w-full h-screen flex">
+          <SideBar collapsed={collapsed} toggleCollapsed={toggleCollapsed} />
 
-                  <div className="px-20 mt-10">{children}</div>
+          <div
+            className={`w-full ${
+              collapsed ? "ml-20" : "ml-56 2xl:ml-72"
+            } overflow-x-hidden`}
+            style={{
+              maxWidth: collapsed
+                ? "calc(100% - 5rem)"
+                : "calc(100% - 12rem) 2xl:calc(100% - 16rem)",
+            }}
+          >
+            <TopBar />
+
+            <Suspense
+              fallback={
+                <div className="fixed z-50 inset-0 gap-4 flex flex-col items-center justify-center bg-opacity-10 backdrop-blur-lg">
+                  <Spin size="large" />
+                  <h1 className="color-primary text-xl">
+                    Мэдээлэл шинэчилж байна түр хүлээнэ үү!
+                  </h1>
                 </div>
-              </Suspense>
-            </div>
-            <div className=" bottom-0 left-0 right-0">
-              <Foot />
-            </div>
+              }
+            >
+              <div>
+                {/* <NotificationModal /> */}
+
+                <div className="p-8">{children}</div>
+              </div>
+            </Suspense>
           </div>
         </div>
       )}

@@ -1,17 +1,17 @@
 "use client";
 
-import AllProjects from "@/components/(routes)/donation/all-project/all-project";
+import TopImage from "@/components/(routes)/home/images/top-images";
 import SectionLayout from "@/components/section-layout";
 import Wrapper from "@/components/wrapper";
 
-export default function Donation() {
+export default function HomeForm() {
   return (
     <>
-      <SectionLayout>
+      <SectionLayout >
         <Wrapper className="h-100 bg-gradient-to-r to-secondary-normal from-pink-normal">
-          hi
+          <TopImage />
         </Wrapper>
-        <AllProjects />
+
       </SectionLayout>
     </>
   );

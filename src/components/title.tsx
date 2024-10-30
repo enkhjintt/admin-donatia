@@ -22,7 +22,7 @@ const Title: React.FC<IProps> = ({
     case 1:
       break;
     case 2:
-      style = "text-base font-medium  my-3";
+      style = "text-base font-medium  my-3 text-gray-700";
       break;
     case 3:
       style = "text-xl font-bold ";

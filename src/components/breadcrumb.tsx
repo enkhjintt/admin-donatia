@@ -1,4 +1,5 @@
 import Link from "next/link";
+import DotIcon from "./icons/dot-icon";
 
 type IProps = {
   links: {
@@ -25,9 +26,12 @@ const BreadCrumb: React.FC<IProps> = ({ links }) => {
               >
                 {link.label}
               </Link>
-
               <span className={"text-gray-500"}>
-                {index < links.length - 1 && <div className="mx-4"></div>}
+                {index < links.length - 1 && (
+                  <div className="mx-4">
+                    <DotIcon />
+                  </div>
+                )}
               </span>
             </>
           )}

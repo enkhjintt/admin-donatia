@@ -16,11 +16,9 @@ const CustomCollapse: React.FC<CustomCollapseProps> = ({
 }) => {
   const { token } = theme.useToken();
 
-  // Define your custom border color here
-  const customBorderColor = "#f5f5f5";
-  const customBgColor = "#f5f5f5";
+  const customBorderColor = "#f5f6f8";
+  const customBgColor = "#f5f6f8";
 
-  // Panel style for the wrapper around each item
   const panelStyle: CSSProperties = {
     marginBottom: 24,
     background: `${customBgColor}`,
@@ -29,23 +27,9 @@ const CustomCollapse: React.FC<CustomCollapseProps> = ({
     padding: "12px",
   };
 
-  const itemLabelStyle: CSSProperties = {
-    fontSize: "18px",
-    fontWeight: "bold",
-    color: "#4A5568",
-    padding: "8px 0",
-    borderBottom: `1px solid ${token.colorBorderSecondary}`,
-  };
-
-  const itemContentStyle: CSSProperties = {
-    padding: "16px",
-    color: "#718096",
-    backgroundColor: "#F7FAFC",
-    borderRadius: "4px",
-  };
-
   return (
     <Collapse
+      className=""
       bordered={false}
       defaultActiveKey={defaultActiveKey}
       expandIcon={({ isActive }) => (
@@ -56,12 +40,12 @@ const CustomCollapse: React.FC<CustomCollapseProps> = ({
         items?.map((item) => ({
           ...item,
           label: (
-            <div className="font-semibold text-lg text-gray-800">
+            <div className="font-semibold text-sm text-gray-800">
               {item.label}
             </div>
           ),
           children: (
-            <div className="ml-6 text-gray-600 font-medium">
+            <div className="ml-6 text-gray-600 text-xs font-medium">
               {item.children}
             </div>
           ),

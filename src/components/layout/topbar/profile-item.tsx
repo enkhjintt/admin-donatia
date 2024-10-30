@@ -5,10 +5,9 @@ import { Avatar, Dropdown, Menu } from "antd";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useState, useTransition } from "react";
 
-// import UserIcon from "@/components/icons/user-icon";
-// import { useProfile } from "@/hooks/use-profile";
-import { signOut } from "next-auth/react";
 import UserIcon from "@/components/icons/user-icon";
+
+import { signOut } from "next-auth/react";
 
 const ProfileDropdown: React.FC = () => {
   // const { data: user } = useProfile();
@@ -18,7 +17,7 @@ const ProfileDropdown: React.FC = () => {
   const router = useRouter();
 
   const handleProfileClick = () => {
-    router.push(`/users/profile`);
+    router.push(`/information/system-user/profile`);
   };
 
   const menu = (
@@ -32,7 +31,7 @@ const ProfileDropdown: React.FC = () => {
       <Menu.Item
         key="3"
         onClick={async () => {
-          await signOut({ redirect: true, callbackUrl: "" });
+          await signOut({ redirect: true, callbackUrl: "/" });
         }}
       >
         <LogoutOutlined />
@@ -49,8 +48,8 @@ const ProfileDropdown: React.FC = () => {
       open={isOpen}
     >
       <div className="dropdown-toggle h-9 border border-gray-300 border-y-0 border-r-0 pl-2 cursor-pointer dark:text-gray-900">
-        <div className="flex flex-row gap-2 items-center">
-          {/* <div>
+        {/* <div className="flex flex-row gap-2 items-center">
+          <div>
             <div className="text-sm text-right font-semibold">
               {user?.org_user?.User?.first_name}
             </div>
@@ -58,8 +57,8 @@ const ProfileDropdown: React.FC = () => {
           </div>
           <Avatar size={36} src={user?.org_user?.User?.profile_picture_url}>
             {user?.org_user?.User?.first_name?.charAt(0)}
-          </Avatar> */}
-        </div>
+          </Avatar>
+        </div> */}
       </div>
     </Dropdown>
   );

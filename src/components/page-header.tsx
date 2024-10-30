@@ -1,9 +1,11 @@
 import BreadCrumb from "./breadcrumb";
 import Button from "./button";
-
+import Title from "./title";
 import Link from "next/link";
+import Wrapper from "./wrapper";
 
 type IProps = {
+  title: string;
   links?: {
     href: string;
     label: string;
@@ -16,6 +18,7 @@ type IProps = {
 };
 
 const PageHeader: React.FC<IProps> = ({
+  title,
   links,
   button,
   secondButton,
@@ -23,25 +26,29 @@ const PageHeader: React.FC<IProps> = ({
   backUrl,
 }) => {
   return (
-    <div className="flex justify-between ">
-      <div>
-        <div>{!hidden && button}</div>
-      </div>
-      <div className="flex justify-between w-full">
-        <div>{links && <BreadCrumb links={links} />}</div>
-      </div>
+    <Wrapper>
+      <div className="flex justify-between p-5">
+        <div className="flex justify-between w-full  border-solid">
+          <div>
+            <Title className="text-gray-700" title={title} />
 
-      <div className="flex items-center  gap-4">
-        {backUrl && (
-          <Link href={backUrl}>
-            <Button placeholder="Буцах"></Button>
-          </Link>
-        )}
-        <div className="flex items-center">
-          <div>{!hidden && secondButton}</div>
+            {links && <BreadCrumb links={links} />}
+          </div>
+        </div>
+
+        <div className="flex items-center  gap-4 ">
+          {backUrl && (
+            <Link href={backUrl}>
+              <Button placeholder="Буцах"></Button>
+            </Link>
+          )}
+          <div className="flex items-center gap-2">
+            <div>{!hidden && secondButton}</div>
+            <div>{!hidden && button}</div>
+          </div>
         </div>
       </div>
-    </div>
+    </Wrapper>
   );
 };
 

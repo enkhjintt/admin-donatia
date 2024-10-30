@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const LoginPage = () => {
   return (
-    <div className="w-screen h-screen flex justify-center items-center ">
+    <div className="w-screen h-screen flex justify-center items-center bg-base-white">
       <section className="w-1/2 h-screen relative flex justify-center items-center bg-gradient-to-r to-secondary-normal from-primary-normal">
         <div className="relative ">
           <Image

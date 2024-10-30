@@ -2,24 +2,26 @@
 
 import { useEffect, useState } from "react";
 // import { useProfile } from "@/hooks/use-profile";
-// import Dropdown from "@/components/dropdown";
+import Dropdown from "@/components/dropdown";
 import Button from "@/components/button";
 import BellIcon from "@/components/icons/bell-icon";
-import Dropdown from "@/components/dropdown";
 // import { getFCMToken } from "@/utils/firebase";
 // import { sendFCMToken } from "@/api/notification";
 
 type IProps = {};
 
+
+
 const TopbarNotification: React.FC<IProps> = ({}) => {
   // const { data: profile } = useProfile();
+
 
   const [open, setOpen] = useState<boolean>(false);
 
   return (
     <Dropdown
       header={
-        <p className="mr-10 px-4 py-2.5 font-semibold text-sm text-gray-700">
+        <p className="mr-10 px-4 py-2 font-semibold text-sm text-gray-700">
           Мэдэгдлүүд
         </p>
       }

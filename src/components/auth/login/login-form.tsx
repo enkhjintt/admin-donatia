@@ -54,7 +54,7 @@ const SubmitButton = ({
     <Button
       loading={loading}
       placeholder={placeholder}
-      variant="gradient"
+      variant="primary"
       htmlType="submit"
       padding="secondary"
       className="w-full h-fit mt-8 p-2 text-base "
