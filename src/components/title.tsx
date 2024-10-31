@@ -13,7 +13,7 @@ const Title: React.FC<IProps> = ({
   className,
   collapsed,
 }) => {
-  let style = `font-semibold text-lg tracking-wider my-4`;
+  let style = `font-bold text-xl tracking-wider`;
 
   switch (level) {
     case 0:
@@ -22,7 +22,7 @@ const Title: React.FC<IProps> = ({
     case 1:
       break;
     case 2:
-      style = "text-base font-medium  my-3 text-gray-700";
+      style = "text-base font-medium  my-5";
       break;
     case 3:
       style = "text-xl font-bold ";
@@ -31,7 +31,7 @@ const Title: React.FC<IProps> = ({
       style = "text-lg font-medium ";
       break;
     case 5:
-      style = "text-base font-bold ";
+      style = "text-base font-medium ";
       break;
   }
 

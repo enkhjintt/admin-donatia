@@ -1,6 +1,7 @@
 import BreadCrumb from "./breadcrumb";
 import Button from "./button";
 import Title from "./title";
+import TopBar from "./layout/topbar/topbar";
 import Link from "next/link";
 import Wrapper from "./wrapper";
 
@@ -27,7 +28,7 @@ const PageHeader: React.FC<IProps> = ({
 }) => {
   return (
     <Wrapper>
-      <div className="flex justify-between p-5">
+      <div className="flex justify-between p-4">
         <div className="flex justify-between w-full  border-solid">
           <div>
             <Title className="text-gray-700" title={title} />

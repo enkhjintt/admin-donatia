@@ -2,29 +2,34 @@ import { Metadata } from "next";
 
 import PageHeader from "@/components/page-header";
 import SectionLayout from "@/components/section-layout";
+import ProjectTable from "@/components/(routes)/information/project/project-table";
 
 export const metadata: Metadata = {
-  title: "Нүүр хуудас",
+  title: "Төсөл | Үндсэн мэдээлэл",
 };
 
-const HomePage = () => {
+const InfoProjectPage = () => {
   return (
     <>
       <SectionLayout>
         <PageHeader
-          title="Нүүр хуудас"
+          title="Төсөл"
           links={[
             {
-              label: "Нүүр хуудас",
+              label: "Үндсэн мэдээлэл",
+              href: "#",
+            },
+            {
+              label: "Төсөл",
               noLink: true,
               href: "#",
             },
           ]}
         />
-        hi
+        <ProjectTable />
       </SectionLayout>
     </>
   );
 };
 
-export default HomePage;
+export default InfoProjectPage;
