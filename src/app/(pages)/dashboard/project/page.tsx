@@ -4,18 +4,23 @@ import PageHeader from "@/components/page-header";
 import SectionLayout from "@/components/section-layout";
 
 export const metadata: Metadata = {
-  title: "Нүүр хуудас",
+  title: "Төсөл | Дашбоард",
 };
 
-const HomePage = () => {
+const DashboardPage = () => {
   return (
     <>
       <SectionLayout>
         <PageHeader
-          title="Нүүр хуудас"
+          title="Төсөл"
           links={[
             {
-              label: "Нүүр хуудас",
+              label: "Дашбоард",
+              noLink: true,
+              href: "#",
+            },
+            {
+              label: "Төсөл",
               noLink: true,
               href: "#",
             },
@@ -27,4 +32,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default DashboardPage;
