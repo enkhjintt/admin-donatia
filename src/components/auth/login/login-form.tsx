@@ -1,27 +1,23 @@
 "use client";
 
 import Button from "@/components/button";
-// import RememberItem from "@/components/items/remember-item";
 import PasswordItem from "@/components/items/password-item";
 import Title from "@/components/title";
 import { useNotification } from "@/hooks/use-notification";
 import { useRouter } from "next/navigation";
-// import { getCookie, setCookie } from "@/utils/cookie";
-import { Form, message, type FormInstance } from "antd";
-// import CryptoJS from "crypto-js";
+import { Form, type FormInstance } from "antd";
+import CryptoJS from "crypto-js";
 import dayjs from "dayjs";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import EmailItem from "@/components/items/email-item";
-
-// import { getFCMToken } from "@/utils/firebase";
-// import { sendFCMToken } from "@/api/notification";
+import { getCookie, setCookie } from "@/utils/cookie";
 
 type TProps = {};
 
 type FormItems = {
-  email: string;
+  identifier: string;
   password: string;
   remember?: string;
 };
@@ -69,96 +65,92 @@ const LoginForm: React.FC<TProps> = () => {
 
   const { success, error } = useNotification();
 
-  // useEffect(() => {
-  //   const remember = getCookie("remember");
+  useEffect(() => {
+    const remember = getCookie("remember");
 
-  //   if (remember) {
-  //     let credentials = getCookie("credentials");
+    console.log("remember12", remember);
 
-  //     if (credentials) {
-  //       try {
-  //         const decrypted = CryptoJS.AES.decrypt(
-  //           credentials,
-  //           "my password"
-  //         ).toString(CryptoJS.enc.Utf8);
+    if (remember) {
+      let credentials = getCookie("credentials");
 
-  //         const { email, password } = JSON.parse(decrypted);
+      if (credentials) {
+        try {
+          const decrypted = CryptoJS.AES.decrypt(
+            credentials,
+            "my password"
+          ).toString(CryptoJS.enc.Utf8);
 
-  //         form.setFields([
-  //           {
-  //             name: "remember",
-  //             value: true,
-  //           },
-  //           {
-  //             name: "email",
-  //             value: email,
-  //           },
-  //           {
-  //             name: "password",
-  //             value: password,
-  //           },
-  //         ]);
-  //       } catch (error) {
-  //         console.error("Failed to decrypt credentials", error);
-  //       }
-  //     }
-  //   }
-  // }, [form]);
+          const { identifier, password } = JSON.parse(decrypted);
 
-  // const handleLogin = async ({ email, password, remember }: FormItems) => {
-  //   setLoading(true);
+          form.setFields([
+            {
+              name: "remember",
+              value: true,
+            },
+            {
+              name: "identifier",
+              value: identifier,
+            },
+            {
+              name: "password",
+              value: password,
+            },
+          ]);
+        } catch (error) {
+          console.error("Failed to decrypt credentials", error);
+        }
+      }
+    }
+  }, [form]);
 
-  //   console.log("form items:", email, password, remember);
+  const handleLogin = async ({ identifier, password, remember }: FormItems) => {
+    setLoading(true);
 
-  //   const response = await signIn("CredentialProvider", {
-  //     redirect: false,
-  //     email: email,
-  //     password: password,
-  //     remember: remember || false,
-  //   });
+    console.log("form items:", identifier, password, remember);
 
-  //   setLoading(false);
+    const response = await signIn("CredentialProvider", {
+      redirect: false,
+      identifier: identifier,
+      password: password,
+      remember: remember || false,
+    });
 
-  //   if (response?.ok) {
-  //     if (remember) {
-  //       const fcmToken = await getFCMToken();
+    setLoading(false);
 
-  //       if (fcmToken) {
-  //         await sendFCMToken(fcmToken);
-  //       }
+    if (response?.ok) {
+      if (remember) {
+        try {
+          setCookie(
+            "credentials",
+            CryptoJS.AES.encrypt(
+              JSON.stringify({ identifier, password }),
+              "my password"
+            ).toString(),
+            30
+          );
+          setCookie("remember", "true", 30);
+        } catch (error) {
+          console.error("Failed to encrypt credentials", error);
+        }
+      } else {
+        setCookie("credentials", "", 0);
+        setCookie("remember", "", 0);
+      }
+      localStorage.setItem("beta-logged", dayjs().format("YYYY-MM-DD"));
 
-  //       try {
-  //         setCookie(
-  //           "credentials",
-  //           CryptoJS.AES.encrypt(
-  //             JSON.stringify({ email, password }),
-  //             "my password"
-  //           ).toString(),
-  //           30
-  //         );
-  //         setCookie("remember", "true", 30);
-  //       } catch (error) {
-  //         console.error("Failed to encrypt credentials", error);
-  //       }
-  //     } else {
-  //       setCookie("credentials", "", 0);
-  //       setCookie("remember", "", 0);
-  //     }
-  //     localStorage.setItem("beta-logged", dayjs().format("YYYY-MM-DD"));
-
-  //     success("Амжилттай нэвтэрлээ!");
-  //     router.replace("/home");
-  //   } else {
-  //     error(response?.error || "Нэвтрэхэд алдаа гарлаа");
-  //   }
-  // };
+      success("Амжилттай нэвтэрлээ!");
+      router.replace("/dashboard");
+    } else {
+      error(response?.error || "Нэвтрэхэд алдаа гарлаа");
+    }
+  };
 
   return (
     <>
       <Form
         disabled={loading}
         form={form}
-        // onFinish={handleLogin}
+        onFinish={handleLogin}
         requiredMark={false}
         layout="vertical"
         className="w-[460px] p-10 "
@@ -167,7 +159,11 @@ const LoginForm: React.FC<TProps> = () => {
           className="font-semibold  text-3xl tracking-normal w-8 text-primary-normal "
           title={"Нэвтрэх"}
         />
-        <EmailItem required className="border-primary-normal" />
+        <EmailItem
+          required
+          className="border-primary-normal"
+          name="identifier"
+        />
 
         <PasswordItem name={"password"} required />
 
