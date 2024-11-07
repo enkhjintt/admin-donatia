@@ -92,17 +92,32 @@ const SideBar: React.FC<IProps> = ({ collapsed, toggleCollapsed }) => {
       items: [
         {
           name: `Төслийн ангилал `,
-          path: "/ref/class",
+          path: "/ref/project-type",
           icon: null,
         },
         {
           name: `Төслийн төрөл `,
-          path: "/ref/type",
+          path: "/ref/project-class",
           icon: null,
         },
         {
           name: `Төслийн төлөв  `,
           path: "/ref/status",
+          icon: null,
+        },
+        {
+          name: `Банкны төрөл  `,
+          path: "/ref/bank",
+          icon: null,
+        },
+        {
+          name: `Төлбөрийн хэлбэр  `,
+          path: "/ref/payment-type",
+          icon: null,
+        },
+        {
+          name: `Төлбөрийн төлөв  `,
+          path: "/ref/payment-status",
           icon: null,
         },
       ],
