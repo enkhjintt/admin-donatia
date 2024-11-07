@@ -139,7 +139,7 @@ const LoginForm: React.FC<TProps> = () => {
       localStorage.setItem("beta-logged", dayjs().format("YYYY-MM-DD"));
 
       success("Амжилттай нэвтэрлээ!");
-      router.replace("/dashboard");
+      router.replace("/home");
     } else {
       error(response?.error || "Нэвтрэхэд алдаа гарлаа");
     }

@@ -1,26 +1,26 @@
-import CredentialsProvider from "next-auth/providers/credentials";
-import { type AuthOptions } from "next-auth";
-// import { loginRequest, LoginResponse } from '@/api/auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import { type AuthOptions } from 'next-auth';
+import { loginRequest, LoginResponse } from '@/api/auth';
 
 const AuthOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
-      id: "CredentialProvider",
-      name: "CredentialProvider",
-      type: "credentials",
+      id: 'CredentialProvider',
+      name: 'CredentialProvider',
+      type: 'credentials',
       credentials: {
-        email: { label: "email", type: "text" },
-        password: { label: "password", type: "password" },
+        identifier: { label: 'identifier', type: 'text' },
+        password: { label: 'password', type: 'password' },
       },
 
       async authorize(credentials) {
         if (!credentials) {
           return null;
         }
-        console.log("credential", credentials);
+        console.log("credential",credentials);
 
         const response = await loginRequest({
-          email: credentials.email,
+          identifier: credentials.identifier,
           password: credentials.password,
         });
 
@@ -39,7 +39,7 @@ const AuthOptions: AuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
 
   session: {
-    strategy: "jwt",
+    strategy: 'jwt',
   },
 
   callbacks: {
@@ -47,9 +47,9 @@ const AuthOptions: AuthOptions = {
       if (user) {
         return {
           ...token,
-          // token: (user as unknown as LoginResponse).token,
-          // level: (user as unknown as LoginResponse).level,
-          // permission: (user as unknown as LoginResponse).permission,
+          token: (user as unknown as LoginResponse).token,
+          level: (user as unknown as LoginResponse).level,
+          permission: (user as unknown as LoginResponse).permission,
         };
       }
 
@@ -58,9 +58,9 @@ const AuthOptions: AuthOptions = {
 
     async session({ session, token }) {
       if (token) {
-        // session.token = token.token as string;
-        // session.level = token.level as string;
-        // session.permission = token.permission as string[];
+        session.token = token.token as string;
+        session.level = token.level as string;
+        session.permission = token.permission as string[];
       }
 
       return session;
@@ -68,18 +68,18 @@ const AuthOptions: AuthOptions = {
   },
 
   pages: {
-    error: "",
-    signIn: "/auth/login",
-    signOut: "/auth/login",
-    newUser: "/auth/login",
-    verifyRequest: "/auth/login",
+    error: '',
+    signIn: '/auth/login',
+    signOut: '/auth/login',
+    newUser: '/auth/login',
+    verifyRequest: '/auth/login',
   },
 
   events: {
     async signOut() {},
   },
 
-  debug: process.env.NODE_ENV !== "production",
+  debug: process.env.NODE_ENV !== 'production',
 };
 
 export default AuthOptions;

@@ -12,21 +12,10 @@ export type LoginResponse = {
     org_id: number;
   };
 };
-export type ChangeResponse = {
-  email: string;
-  new_password: string;
-  token: string | undefined;
-  permission: string[] | undefined;
-  level: string | undefined;
-  user: {
-    user_id: number;
-    exp: number;
-    org_id: number;
-  };
-};
 
-//
-export function loginRequest(data: { email: string; password: string }) {
+export function loginRequest(data: { identifier: string; password: string }) {
+  console.log("login request calling with this data", data);
+
   return apiLogin<LoginResponse>({
     url: `/auth/login`,
     method: "POST",
@@ -34,54 +23,26 @@ export function loginRequest(data: { email: string; password: string }) {
   });
 }
 
-export function otpRequest(data: { email: string }) {
+export function changePassword(data: { phone: string; new_password: string }) {
   return api({
-    url: `/auth/forget-password`,
-    method: "POST",
+    url: `/auth/user-password`,
+    method: "PUT",
     data,
   });
 }
 
-export type SuccessResponse<T> = {
-  success: true; // Ensure success is true for success response
-  data: T; // Data should contain the actual payload
-};
-
-export type ErrorResponse = {
-  success: false; // Success is false for error response
-  error: {
-    message: string;
-  };
-};
-
-export type ApiResponse<T> = SuccessResponse<T> | ErrorResponse;
-
-export function checkOtp(data: {
-  email: string;
-  otp: string;
-}): Promise<ApiResponse<{ token: string }>> {
-  return api<{ token: string }>({
-    url: `/auth/otp-check`,
-    method: "POST",
-    data,
-  });
-}
-
-export function changePassword(data: { new_password: string }, token?: string) {
+export function otpRequest(data: { phone: string }) {
   return api({
-    url: `/auth/change-password`,
+    url: `/auth/otp`,
     method: "POST",
     data,
-    config: {
-      headers: token ? { Authorization: `Bearer ${token}` } : {},
-    },
   });
 }
 
-// export function changePassword(data: { email: string; new_password: string ; token: string}) {
-//   return apiLogin<ChangeResponse>({
-//     url: `/auth/change-password`,
-//     method: "POST",
-//     data,
-//   });
-// }
+export function checkOtp(data: { phone: string; otp: string }) {
+  return api({
+    url: `/auth/check-otp`,
+    method: "POST",
+    data,
+  });
+}
