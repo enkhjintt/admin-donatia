@@ -3,9 +3,6 @@ import Button from "@/components/button";
 import TrashIcon from "@/components/icons/trash-icon";
 import DateBetweenCaseItem from "@/components/items/date-between-case-item";
 import SearchItem from "@/components/items/search-item";
-
-import SelectStatusItem from "@/components/items/status-select-item";
-
 import ValueCounter from "@/components/value-counter";
 import { isDateValid } from "@/utils/dateisValid";
 import { Form } from "antd";
@@ -13,20 +10,16 @@ import { useState } from "react";
 
 type IProps = {
   resLength: number;
-  onChangeSearch: (ner: string) => void;
-  onTypeSearch: (device_type: string) => void;
+  onChangeSearch: (tulbur_helber_ner: string) => void;
   onStartDateChange: (startDate: string) => void;
   onEndDateChange: (endDate: string) => void;
-  onStatusChange: (status: string) => void;
 };
 
 const PaymentTypeTabActions: React.FC<IProps> = ({
   resLength = 0,
   onChangeSearch,
-  onTypeSearch,
   onStartDateChange,
   onEndDateChange,
-  onStatusChange,
 }) => {
   const [form] = Form.useForm();
   const values = Form.useWatch([], form);
@@ -38,9 +31,7 @@ const PaymentTypeTabActions: React.FC<IProps> = ({
     form.resetFields();
     onChangeSearch("");
     onStartDateChange("");
-    onStatusChange("");
     onEndDateChange("");
-    onTypeSearch("");
   };
 
   return (
@@ -52,12 +43,10 @@ const PaymentTypeTabActions: React.FC<IProps> = ({
         onValuesChange={(
           _,
           values: {
-            ner: string;
-            status: string;
-            device_type: string;
+            tulbur_helber_ner: string;
           }
         ) => {
-          onChangeSearch(values.ner);
+          onChangeSearch(values.tulbur_helber_ner);
         }}
       >
         <FilterLayout
@@ -65,9 +54,8 @@ const PaymentTypeTabActions: React.FC<IProps> = ({
             <>
               <SearchItem
                 label=""
-                placeholder="Ангилал нэрээр хайх"
-                name="ner"
-                className="col-span-3"
+                placeholder="Төлбөрийн хэлбэр нэрээр хайх"
+                name="tulbur_helber_ner"
               />
               <DateBetweenCaseItem
                 format="YYYY-MM-DD"
@@ -89,8 +77,8 @@ const PaymentTypeTabActions: React.FC<IProps> = ({
           BotRight={
             <>
               <Button
-                icon={<TrashIcon color="fill-error-normal" />}
-                variant="secondary"
+                icon={<TrashIcon />}
+                variant="icon"
                 placeholder="Цэвэрлэх"
                 loading={loading}
                 onClick={handleClear}
@@ -98,7 +86,7 @@ const PaymentTypeTabActions: React.FC<IProps> = ({
             </>
           }
         />
-        {values?.ner && values?.ner.length > 0 && (
+        {values?.tulbur_helber_ner && values?.tulbur_helber_ner.length > 0 && (
           <ValueCounter length={resLength} />
         )}
       </Form>

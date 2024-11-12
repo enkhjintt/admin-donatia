@@ -10,6 +10,7 @@ import Wrapper from "@/components/wrapper";
 import ChevronLeftIcon from "@/components/icons/chevron-left-icon";
 import NameItem from "@/components/items/name-item";
 import { CreateProjectType, ProjectTypeResponse } from "@/api/ref/project-type";
+import InputNumberItem from "@/components/items/input-number-item";
 
 type IProps = {};
 
@@ -26,7 +27,7 @@ const AddProjectTypeForm: React.FC<IProps> = ({}) => {
     const response = await CreateProjectType(newData);
 
     if (response.success) {
-      success("Төслийн ангилал амжилттай үүслээ!");
+      success("Төслийн төрөл амжилттай үүслээ!");
 
       setTimeout(() => {
         router.push("/ref/project-type");
@@ -60,8 +61,14 @@ const AddProjectTypeForm: React.FC<IProps> = ({}) => {
         />
         <Wrapper className="px-6 w-full ">
           <div className="flex items-center justify-center mt-5">
-            <div className="grid grid-cols-3 gap-x-4 w-full h-full">
-              <NameItem required name={"ner"} label="Төслийн ангилал нэр" />
+            <div className="grid grid-cols-2 gap-x-4 w-full h-full">
+              <NameItem required name={"ner"} label="Төслийн төрөл нэр" />
+              <InputNumberItem
+            name={"shimtgel_huvi"}
+            required
+            label="Шимтгэл хувь"
+            maxLength={2}
+          />
             </div>
           </div>
           <div className="mt-10 mb-5 flex gap-5 justify-end">
@@ -70,7 +77,7 @@ const AddProjectTypeForm: React.FC<IProps> = ({}) => {
               disabled={loading}
               placeholder="Болих"
               variant="text"
-              onClick={() => router.push("/ref/bank")}
+              onClick={() => router.push("/ref/project-type")}
               className="rounded-2xl"
             />
 

@@ -3,7 +3,9 @@ import { api } from "@/api/api";
 export type PaymentStatusResponse = {
   id: number;
   ner: string;
-
+  tulbur_tuluv_ner: string;
+  created_at: string;
+  updated_at: string;
 };
 
 export function CreatePaymentStatus(data: PaymentStatusResponse) {

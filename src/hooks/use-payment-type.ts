@@ -5,7 +5,6 @@ import useSWRImmutable from "swr/immutable";
 import { generateParams } from "@/utils/pagination-search";
 import { PaymentTypeResponse } from "@/api/ref/payment-type";
 
-
 export function usePaymentType(
   pagination?: DefaultPagination,
   search?: {

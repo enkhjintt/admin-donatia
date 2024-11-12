@@ -3,6 +3,7 @@ import { api } from "@/api/api";
 export type PaymentTypeResponse = {
   id: number;
   ner: string;
+  tulbur_helber_ner: string;
 };
 
 export function CreatePaymentType(data: PaymentTypeResponse) {

@@ -12,6 +12,7 @@ import NameItem from "@/components/items/name-item";
 import { CreatePaymentType, PaymentTypeResponse } from "@/api/ref/payment-type";
 
 
+
 type IProps = {};
 
 const AddPaymentTypeForm: React.FC<IProps> = ({}) => {
@@ -63,6 +64,7 @@ const AddPaymentTypeForm: React.FC<IProps> = ({}) => {
           <div className="flex items-center justify-center mt-5">
             <div className="grid grid-cols-3 gap-x-4 w-full h-full">
               <NameItem required name={"ner"} label="Төлбөрийн хэлбэр нэр" />
+              
             </div>
           </div>
           <div className="mt-10 mb-5 flex gap-5 justify-end">

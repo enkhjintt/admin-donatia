@@ -11,10 +11,8 @@ import dayjs from "dayjs";
 
 import BankTypeTabActions from "./tab-actions";
 import React from "react";
-import { BankTypeResponse, DeleteBankType } from "@/api/ref/bank";
+import { DeleteBankType } from "@/api/ref/bank";
 import { useBankType } from "@/hooks/use-bank-type";
-
-
 
 type IProps = {};
 
@@ -28,9 +26,7 @@ const BankTypeTable: React.FC<IProps> = () => {
   });
   const [loading, setLoading] = useState<boolean>(false);
   const [begin_date, setCreatedAt] = useState<string>("");
-  const [status, setStatusAt] = useState<string>("");
   const [end_date, setUpdatedAt] = useState<string>("");
-  const [device_type, setDevice] = useState<string>("");
   const [deleteModal, setDeleteModal] = useState<
     { visible: false } | { visible: true; selectedId: number }
   >({ visible: false });
@@ -45,7 +41,7 @@ const BankTypeTable: React.FC<IProps> = () => {
     sortType: "",
   });
 
-  const [serialNumSearch, setNameSearch] = useDebouncedState<string>(
+  const [nameSearch, setNameSearch] = useDebouncedState<string>(
     DEFAULT_SEARCH_VALUE,
     500
   );
@@ -55,7 +51,7 @@ const BankTypeTable: React.FC<IProps> = () => {
     isLoading,
     mutate,
   } = useBankType(pagination, {
-    status: status,
+    bank_turul_ner: nameSearch,
     sort_by: sortOrder.sortBy,
     sort_type: sortOrder.sortType,
     begin_date: begin_date,
@@ -68,7 +64,7 @@ const BankTypeTable: React.FC<IProps> = () => {
 
   useEffect(() => {
     mutate();
-  }, [pagination, serialNumSearch, status, begin_date, end_date]);
+  }, [pagination, nameSearch, begin_date, end_date]);
 
   function handleChangeSearch(newSearch: string) {
     setNameSearch(newSearch);
@@ -78,15 +74,6 @@ const BankTypeTable: React.FC<IProps> = () => {
 
   function handleStartDate(begin_date: string) {
     setCreatedAt(begin_date);
-
-    setPagination((prev) => ({ ...prev, page_number: 1 }));
-  }
-  function handleType(device_type: string) {
-    setDevice(device_type);
-    setPagination((prev) => ({ ...prev, page_number: 1 }));
-  }
-  function handleStatus(status: string) {
-    setStatusAt(status);
 
     setPagination((prev) => ({ ...prev, page_number: 1 }));
   }
@@ -146,33 +133,26 @@ const BankTypeTable: React.FC<IProps> = () => {
     setDeleteModal({ visible: true, selectedId: id });
   };
 
-  //edit icon deer darahad edit huudas ruu shiljne
-  const eyeHandler = (id: number) => {
-    router.push(`/ref/bank/view-bank/${id}`);
-  };
-
   const columns = [
     {
       title: "Банкны нэр",
       dataIndex: "bank_turul_ner",
-      align: "center",
+
       fixed: "left",
     },
     {
       title: "Бүртгэсэн огноо",
       dataIndex: "created_at",
       sorter: true,
-      align: "center",
+
       width: 200,
-      render: (value: Date) => {
-        dayjs(value).format("YYYY-MM-DD HH:mm");
-      },
+      render: (value: Date) => <>{dayjs(value).format("YYYY-MM-DD HH:mm")}</>,
     },
     {
       title: "Шинэчилсэн огноо",
       dataIndex: "updated_at",
       sorter: true,
-      align: "center",
+
       width: 200,
       render: (value: Date) => <>{dayjs(value).format("YYYY-MM-DD HH:mm")}</>,
     },
@@ -188,8 +168,6 @@ const BankTypeTable: React.FC<IProps> = () => {
       />
       {/* tabActions ni table-n deerh haih uildluud */}
       <BankTypeTabActions
-        onTypeSearch={handleType}
-        onStatusChange={handleStatus}
         onChangeSearch={handleChangeSearch}
         onStartDateChange={handleStartDate}
         onEndDateChange={handleEndDate}
@@ -201,7 +179,7 @@ const BankTypeTable: React.FC<IProps> = () => {
         isIndex
         removeLock
         isLoading={loading}
-        eyeHandler={eyeHandler}
+        removeEye
         editHandler={editHandler}
         trashHandler={handleDeleteModal}
         column={columns}

@@ -105,8 +105,8 @@ const ProjectTabActions: React.FC<IProps> = ({
                 }}
               />
               <Button
-                icon={<TrashIcon color="fill-error-normal" />}
-                variant="secondary"
+                icon={<TrashIcon />}
+                variant="icon"
                 placeholder="Цэвэрлэх"
                 loading={loading}
                 onClick={handleClear}

@@ -9,7 +9,7 @@ export function useBankType(
   pagination?: DefaultPagination,
   search?: {
     //end haih col zarlana
-    status?: string;
+    bank_turul_ner?: string;
     sort_by: string;
     sort_type: string;
     begin_date?: string;

@@ -21,11 +21,12 @@ const EditPaymentTypePage = ({ params }: IProps) => {
           links={[
             {
               label: "Төлбөрийн хэлбэр",
-              noLink: true,
+
               href: "/ref/bank",
             },
             {
               label: "Засах",
+              noLink: true,
               href: "#",
             },
           ]}

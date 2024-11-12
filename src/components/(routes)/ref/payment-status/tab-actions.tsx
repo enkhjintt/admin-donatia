@@ -3,9 +3,6 @@ import Button from "@/components/button";
 import TrashIcon from "@/components/icons/trash-icon";
 import DateBetweenCaseItem from "@/components/items/date-between-case-item";
 import SearchItem from "@/components/items/search-item";
-
-import SelectStatusItem from "@/components/items/status-select-item";
-
 import ValueCounter from "@/components/value-counter";
 import { isDateValid } from "@/utils/dateisValid";
 import { Form } from "antd";
@@ -14,19 +11,15 @@ import { useState } from "react";
 type IProps = {
   resLength: number;
   onChangeSearch: (ner: string) => void;
-  onTypeSearch: (device_type: string) => void;
   onStartDateChange: (startDate: string) => void;
   onEndDateChange: (endDate: string) => void;
-  onStatusChange: (status: string) => void;
 };
 
 const PaymentStatusTabActions: React.FC<IProps> = ({
   resLength = 0,
   onChangeSearch,
-  onTypeSearch,
   onStartDateChange,
   onEndDateChange,
-  onStatusChange,
 }) => {
   const [form] = Form.useForm();
   const values = Form.useWatch([], form);
@@ -38,9 +31,7 @@ const PaymentStatusTabActions: React.FC<IProps> = ({
     form.resetFields();
     onChangeSearch("");
     onStartDateChange("");
-    onStatusChange("");
     onEndDateChange("");
-    onTypeSearch("");
   };
 
   return (
@@ -53,8 +44,6 @@ const PaymentStatusTabActions: React.FC<IProps> = ({
           _,
           values: {
             ner: string;
-            status: string;
-            device_type: string;
           }
         ) => {
           onChangeSearch(values.ner);
@@ -63,12 +52,7 @@ const PaymentStatusTabActions: React.FC<IProps> = ({
         <FilterLayout
           BotLeft={
             <>
-              <SearchItem
-                label=""
-                placeholder="Ангилал нэрээр хайх"
-                name="ner"
-                className="col-span-3"
-              />
+              <SearchItem label="" placeholder="Төлөв нэрээр хайх" name="ner" />
               <DateBetweenCaseItem
                 format="YYYY-MM-DD"
                 isLabeled
@@ -89,8 +73,8 @@ const PaymentStatusTabActions: React.FC<IProps> = ({
           BotRight={
             <>
               <Button
-                icon={<TrashIcon color="fill-error-normal" />}
-                variant="secondary"
+                icon={<TrashIcon />}
+                variant="icon"
                 placeholder="Цэвэрлэх"
                 loading={loading}
                 onClick={handleClear}

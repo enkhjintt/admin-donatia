@@ -9,7 +9,7 @@ import { useNotification } from "@/hooks/use-notification";
 import Title from "@/components/title";
 import ChevronLeftIcon from "@/components/icons/chevron-left-icon";
 import NameItem from "@/components/items/name-item";
-import { usePaymentType } from "@/hooks/use-payment-type";
+import { usePaymentType, usePaymentTypeById } from "@/hooks/use-payment-type";
 import { PaymentTypeResponse, UpdatePaymentType } from "@/api/ref/payment-type";
 
 
@@ -28,7 +28,7 @@ const EditPaymentTypeForm: React.FC<IProps> = ({ id }) => {
   useEffect(() => {
     if (data) {
       form.setFieldsValue({
-        ner: data.ner,
+        tulbur_helber_ner: data.tulbur_helber_ner,
       });
     }
   }, [form, data]);
@@ -80,7 +80,7 @@ const EditPaymentTypeForm: React.FC<IProps> = ({ id }) => {
         <div className="grid grid-cols-3 gap-x-4 w-full h-full">
           <NameItem
             required
-            name={"ner"}
+            name={"tulbur_helber_ner"}
             label="Төлбөрийн хэлбэр нэр"
           />
         </div>
@@ -108,6 +108,3 @@ const EditPaymentTypeForm: React.FC<IProps> = ({ id }) => {
 };
 
 export default EditPaymentTypeForm;
-function usePaymentTypeById(id: number): { data: any; mutate: any } {
-  throw new Error("Function not implemented.");
-}
