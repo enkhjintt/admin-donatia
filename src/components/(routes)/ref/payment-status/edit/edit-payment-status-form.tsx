@@ -8,12 +8,16 @@ import Wrapper from "@/components/wrapper";
 import { useNotification } from "@/hooks/use-notification";
 import Title from "@/components/title";
 import ChevronLeftIcon from "@/components/icons/chevron-left-icon";
+
 import NameItem from "@/components/items/name-item";
+import {
+  usePaymentStatus,
+  usePaymentStatusById,
+} from "@/hooks/use-payment-status";
 import {
   PaymentStatusResponse,
   UpdatePaymentStatus,
 } from "@/api/ref/payment-status";
-import { usePaymentStatus } from "@/hooks/use-payment-status";
 
 type IProps = {
   id: number;
@@ -30,24 +34,24 @@ const EditPaymentStatusForm: React.FC<IProps> = ({ id }) => {
   useEffect(() => {
     if (data) {
       form.setFieldsValue({
-        ner: data.ner,
+        tulbur_tuluv_ner: data.tulbur_tuluv_ner,
       });
     }
   }, [form, data]);
 
   const handleSubmit = async (values: PaymentStatusResponse) => {
     setLoading(true);
-    const newData = { ...values, cost: Number(values.ner) };
+    const newData = { ...values };
 
     const response = await UpdatePaymentStatus(id, newData);
 
     if (response.success) {
-      success("Төслийн ангилал амжилттай засагдлаа!");
+      success("Банкны төрөл амжилттай засагдлаа!");
       mutate();
       editMutate();
 
       setTimeout(() => {
-        router.replace("/ref/project-type");
+        router.replace("/ref/payment-status");
       }, 100);
 
       setTimeout(() => {
@@ -80,7 +84,7 @@ const EditPaymentStatusForm: React.FC<IProps> = ({ id }) => {
         <Title level={2} title={"Ерөнхий мэдээлэл"} />
 
         <div className="grid grid-cols-3 gap-x-4 w-full h-full">
-          <NameItem required name={"ner"} label="Төслийн ангилал нэр" />
+          <NameItem required name={"tulbur_tuluv_ner"} label="Банкны нэр" />
         </div>
         <div className="mt-10 mb-5 flex gap-5 justify-end ">
           <Button
@@ -89,7 +93,7 @@ const EditPaymentStatusForm: React.FC<IProps> = ({ id }) => {
             placeholder="Болих"
             variant="text"
             className="rounded-2xl"
-            onClick={() => router.push("/ref/project-type")}
+            onClick={() => router.push("/ref/payment-status")}
           />
 
           <Button
@@ -106,6 +110,3 @@ const EditPaymentStatusForm: React.FC<IProps> = ({ id }) => {
 };
 
 export default EditPaymentStatusForm;
-function usePaymentStatusById(id: number): { data: any; mutate: any } {
-  throw new Error("Function not implemented.");
-}

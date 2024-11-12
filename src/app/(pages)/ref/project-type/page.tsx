@@ -2,7 +2,7 @@ import { Metadata } from "next";
 
 import PageHeader from "@/components/page-header";
 import SectionLayout from "@/components/section-layout";
-import BankTypeTable from "@/components/(routes)/ref/bank/bank-type-table";
+
 import Link from "next/link";
 import Button from "@/components/button";
 import PlusIcon from "@/components/icons/plus-icon";
@@ -17,10 +17,10 @@ const ProjectTypePage = () => {
     <>
       <SectionLayout>
         <PageHeader
-          title="Төсөл ангилал"
+          title="Төсөл төрөл"
           links={[
             {
-              label: "Төсөл ангилал",
+              label: "Төсөл төрөл",
               noLink: true,
               href: "#",
             },
@@ -30,7 +30,7 @@ const ProjectTypePage = () => {
               <Button
                 variant="primary"
                 className="w-56"
-                placeholder="Төсөл ангилал нэмэх"
+                placeholder="Төсөл төрөл нэмэх"
                 icon={<PlusIcon />}
               />
             </Link>

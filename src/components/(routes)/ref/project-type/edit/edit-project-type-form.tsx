@@ -11,6 +11,7 @@ import ChevronLeftIcon from "@/components/icons/chevron-left-icon";
 import NameItem from "@/components/items/name-item";
 import { useProjectType, useProjectTypeById } from "@/hooks/use-project-type";
 import { ProjectTypeResponse, UpdateProjectType } from "@/api/ref/project-type";
+import InputNumberItem from "@/components/items/input-number-item";
 
 type IProps = {
   id: number;
@@ -28,6 +29,7 @@ const EditProjectTypeForm: React.FC<IProps> = ({ id }) => {
     if (data) {
       form.setFieldsValue({
         ner: data.ner,
+        shimtgel_huvi: data.shimtgel_huvi,
       });
     }
   }, [form, data]);
@@ -39,7 +41,7 @@ const EditProjectTypeForm: React.FC<IProps> = ({ id }) => {
     const response = await UpdateProjectType(id, newData);
 
     if (response.success) {
-      success("Төслийн ангилал амжилттай засагдлаа!");
+      success("Төслийн төрөл амжилттай засагдлаа!");
       mutate();
       editMutate();
 
@@ -76,8 +78,14 @@ const EditProjectTypeForm: React.FC<IProps> = ({ id }) => {
       <Wrapper className="p-6 w-full ">
         <Title level={2} title={"Ерөнхий мэдээлэл"} />
 
-        <div className="grid grid-cols-3 gap-x-4 w-full h-full">
-          <NameItem required name={"ner"} label="Төслийн ангилал нэр" />
+        <div className="grid grid-cols-2 gap-x-4 w-full h-full">
+          <NameItem required name={"ner"} label="Төслийн төрөл нэр" />
+          <InputNumberItem
+            name={"shimtgel_huvi"}
+            required
+            label="Шимтгэл хувь"
+            maxLength={2}
+          />
         </div>
         <div className="mt-10 mb-5 flex gap-5 justify-end ">
           <Button

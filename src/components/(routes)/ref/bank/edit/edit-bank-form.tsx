@@ -34,7 +34,7 @@ const EditBankTypeForm: React.FC<IProps> = ({ id }) => {
 
   const handleSubmit = async (values: BankTypeResponse) => {
     setLoading(true);
-    const newData = { ...values, cost: Number(values.bank_turul_ner) };
+    const newData = { ...values, bank_turul_ner: values.bank_turul_ner };
 
     const response = await UpdateBankType(id, newData);
 

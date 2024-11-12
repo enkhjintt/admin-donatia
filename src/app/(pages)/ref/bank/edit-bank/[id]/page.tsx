@@ -22,11 +22,12 @@ const BankTypeEditPage = ({ params }: IProps) => {
           links={[
             {
               label: "Банкны төрөл",
-              noLink: true,
+         
               href: "/ref/bank",
             },
             {
               label: "Засах",
+              noLink: true,
               href: "#",
             },
           ]}

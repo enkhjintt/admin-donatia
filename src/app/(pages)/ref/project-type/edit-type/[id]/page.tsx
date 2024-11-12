@@ -5,8 +5,9 @@ import SectionLayout from "@/components/section-layout";
 import EditProjectTypeForm from "@/components/(routes)/ref/project-type/edit/edit-project-type-form";
 
 
+
 export const metadata: Metadata = {
-  title: "Төслийн ангилал | Засах",
+  title: "Төслийн төрөл | Засах",
 }
 type IProps = {
   params: { id: number };
@@ -17,16 +18,16 @@ const EditProjectTypePage = ({ params }: IProps) => {
     <>
       <SectionLayout>
         <PageHeader
-          title="Төслийн ангилал"
+          title="Төслийн төрөл"
           links={[
             {
-              label: "Төслийн ангилал",
-              noLink: true,
-              href: "/ref/bank",
+              label: "Төслийн төрөл",
+              href: "/ref/project-type",
             },
             {
               label: "Засах",
               href: "#",
+              noLink: true,
             },
           ]}
           

@@ -14,19 +14,15 @@ import { useState } from "react";
 type IProps = {
   resLength: number;
   onChangeSearch: (ner: string) => void;
-  onTypeSearch: (device_type: string) => void;
   onStartDateChange: (startDate: string) => void;
   onEndDateChange: (endDate: string) => void;
-  onStatusChange: (status: string) => void;
 };
 
 const ProjectTypeTabActions: React.FC<IProps> = ({
   resLength = 0,
   onChangeSearch,
-  onTypeSearch,
   onStartDateChange,
   onEndDateChange,
-  onStatusChange,
 }) => {
   const [form] = Form.useForm();
   const values = Form.useWatch([], form);
@@ -38,9 +34,7 @@ const ProjectTypeTabActions: React.FC<IProps> = ({
     form.resetFields();
     onChangeSearch("");
     onStartDateChange("");
-    onStatusChange("");
     onEndDateChange("");
-    onTypeSearch("");
   };
 
   return (
@@ -53,8 +47,6 @@ const ProjectTypeTabActions: React.FC<IProps> = ({
           _,
           values: {
             ner: string;
-            status: string;
-            device_type: string;
           }
         ) => {
           onChangeSearch(values.ner);
@@ -65,7 +57,7 @@ const ProjectTypeTabActions: React.FC<IProps> = ({
             <>
               <SearchItem
                 label=""
-                placeholder="Ангилал нэрээр хайх"
+                placeholder="Төрлийн нэрээр хайх"
                 name="ner"
                 className="col-span-3"
               />
@@ -89,8 +81,8 @@ const ProjectTypeTabActions: React.FC<IProps> = ({
           BotRight={
             <>
               <Button
-                icon={<TrashIcon color="fill-error-normal" />}
-                variant="secondary"
+                icon={<TrashIcon />}
+                variant="icon"
                 placeholder="Цэвэрлэх"
                 loading={loading}
                 onClick={handleClear}

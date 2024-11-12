@@ -26,9 +26,7 @@ const PaymentTypeTable: React.FC<IProps> = () => {
   });
   const [loading, setLoading] = useState<boolean>(false);
   const [begin_date, setCreatedAt] = useState<string>("");
-  const [status, setStatusAt] = useState<string>("");
   const [end_date, setUpdatedAt] = useState<string>("");
-  const [device_type, setDevice] = useState<string>("");
   const [deleteModal, setDeleteModal] = useState<
     { visible: false } | { visible: true; selectedId: number }
   >({ visible: false });
@@ -43,7 +41,7 @@ const PaymentTypeTable: React.FC<IProps> = () => {
     sortType: "",
   });
 
-  const [serialNumSearch, setNameSearch] = useDebouncedState<string>(
+  const [nameSearch, setNameSearch] = useDebouncedState<string>(
     DEFAULT_SEARCH_VALUE,
     500
   );
@@ -53,7 +51,7 @@ const PaymentTypeTable: React.FC<IProps> = () => {
     isLoading,
     mutate,
   } = usePaymentType(pagination, {
-    tulbur_helber_ner: status,
+    tulbur_helber_ner: nameSearch,
     sort_by: sortOrder.sortBy,
     sort_type: sortOrder.sortType,
     begin_date: begin_date,
@@ -66,25 +64,15 @@ const PaymentTypeTable: React.FC<IProps> = () => {
 
   useEffect(() => {
     mutate();
-  }, [pagination, serialNumSearch, status, begin_date, end_date]);
+  }, [pagination, nameSearch, begin_date, end_date]);
 
   function handleChangeSearch(newSearch: string) {
     setNameSearch(newSearch);
-
     setPagination((prev) => ({ ...prev, page_number: 1 }));
   }
 
   function handleStartDate(begin_date: string) {
     setCreatedAt(begin_date);
-
-    setPagination((prev) => ({ ...prev, page_number: 1 }));
-  }
-  function handleType(device_type: string) {
-    setDevice(device_type);
-    setPagination((prev) => ({ ...prev, page_number: 1 }));
-  }
-  function handleStatus(status: string) {
-    setStatusAt(status);
 
     setPagination((prev) => ({ ...prev, page_number: 1 }));
   }
@@ -125,7 +113,7 @@ const PaymentTypeTable: React.FC<IProps> = () => {
       if (response.success) {
         mutate();
 
-        success("Төлбөрийн төлөв амжилттай устлаа!");
+        success("Төлбөрийн төрөл амжилттай устлаа!");
 
         setDeleteModal({ visible: false });
       } else {
@@ -144,34 +132,22 @@ const PaymentTypeTable: React.FC<IProps> = () => {
     setDeleteModal({ visible: true, selectedId: id });
   };
 
-  //edit icon deer darahad edit huudas ruu shiljne
-  const eyeHandler = (id: number) => {
-    router.push(`/ref/payment-type/view-type/${id}`);
-  };
-
   const columns = [
     {
-      title: "Төлбөрийн төлөв нэр",
+      title: "Төлбөрийн төрөл нэр",
       dataIndex: "tulbur_helber_ner",
-      align: "center",
       fixed: "left",
     },
     {
       title: "Бүртгэсэн огноо",
       dataIndex: "created_at",
       sorter: true,
-      align: "center",
-      width: 200,
-      render: (value: Date) => {
-        dayjs(value).format("YYYY-MM-DD HH:mm");
-      },
+      render: (value: Date) => <>{dayjs(value).format("YYYY-MM-DD HH:mm")}</>,
     },
     {
       title: "Шинэчилсэн огноо",
       dataIndex: "updated_at",
       sorter: true,
-      align: "center",
-      width: 200,
       render: (value: Date) => <>{dayjs(value).format("YYYY-MM-DD HH:mm")}</>,
     },
   ];
@@ -186,8 +162,6 @@ const PaymentTypeTable: React.FC<IProps> = () => {
       />
       {/* tabActions ni table-n deerh haih uildluud */}
       <PaymentTypeTabActions
-        onTypeSearch={handleType}
-        onStatusChange={handleStatus}
         onChangeSearch={handleChangeSearch}
         onStartDateChange={handleStartDate}
         onEndDateChange={handleEndDate}
@@ -200,7 +174,6 @@ const PaymentTypeTable: React.FC<IProps> = () => {
         removeEye
         removeLock
         isLoading={loading}
-        eyeHandler={eyeHandler}
         editHandler={editHandler}
         trashHandler={handleDeleteModal}
         column={columns}

@@ -106,7 +106,7 @@ const Upload: React.FC<IProps> = ({
             <Button
               placeholder="Файл сонгох"
               variant="white"
-              textVariant="secondary"
+              textvariant="text"
               className="mt-2 w-60 xl:w-80"
             />
           ) : (

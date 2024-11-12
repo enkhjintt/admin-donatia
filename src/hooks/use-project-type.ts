@@ -19,7 +19,7 @@ export function useProjectType(
   const params = generateParams(pagination, search);
 
   const { data, isLoading, error, mutate } = useSWRImmutable(
-    `/tusul/angilal/?${params}`,
+    `/tusul/turul/?${params}`,
     (url) => fetcher<PaginationResponse<ProjectTypeResponse>>(url)
   );
 
@@ -48,5 +48,5 @@ export function useProjectTypeById(id: number) {
 }
 
 export function getProjectTypeById(id: number | undefined) {
-  return `/tusul/angilal/get/${id}`;
+  return `/tusul/turul/get/${id}`;
 }

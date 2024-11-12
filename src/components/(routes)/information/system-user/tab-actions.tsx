@@ -98,7 +98,7 @@ const SystemUserTabActions: React.FC<IProps> = ({
 
               <Button
                 variant="primary"
-                icon={<TrashIcon color="fill-error-normal" />}
+                icon={<TrashIcon />}
                 placeholder="Цэвэрлэх"
                 loading={loading}
                 onClick={handleClear}
