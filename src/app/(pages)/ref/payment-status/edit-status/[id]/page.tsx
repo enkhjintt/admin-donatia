@@ -19,8 +19,11 @@ const EditPaymentStatusPage = ({ params }: IProps) => {
           title="Төлбөрийн төлөв"
           links={[
             {
+              label: "Үндсэн лавлах",
+              href: "#",
+            },
+            {
               label: "Төлбөрийн төлөв",
-          
               href: "/ref/bank",
             },
             {

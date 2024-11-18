@@ -63,12 +63,17 @@ const AddProjectFeeForm: React.FC<IProps> = ({}) => {
         <Wrapper className="px-6 w-full ">
           <div className="flex items-center justify-center mt-5">
             <div className="grid grid-cols-2 gap-x-4 w-full h-full">
-              <NameItem required name={"ner"} label="Төслийн төрөл нэр" />
               <InputNumberItem
-                name={"shimtgel_huvi"}
+                name={"honog"}
                 required
-                label="Дүн"
-                maxLength={2}
+                label="Байршуулах хугацаа /хоног/"
+                maxLength={3}
+              />
+              <InputNumberItem
+                name={"dun"}
+                required
+                label="Шимтгэлийн дүн"
+                maxLength={7}
               />
             </div>
           </div>

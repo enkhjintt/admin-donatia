@@ -4,7 +4,6 @@ import PageHeader from "@/components/page-header";
 import SectionLayout from "@/components/section-layout";
 import AddProjectStatusForm from "@/components/(routes)/ref/project-status/add/add-project-status-form";
 
-
 export const metadata: Metadata = {
   title: "Төслийн төлөв | Нэмэх",
 };
@@ -15,6 +14,10 @@ const AddProjectStatusPage = () => {
         <PageHeader
           title="Төслийн төлөв"
           links={[
+            {
+              label: "Үндсэн лавлах",
+              href: "#",
+            },
             {
               label: "Төслийн төлөв",
               href: "/ref/project-status",

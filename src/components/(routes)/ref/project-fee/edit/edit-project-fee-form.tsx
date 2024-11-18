@@ -80,13 +80,18 @@ const EditProjectFeeForm: React.FC<IProps> = ({ id }) => {
         <Title level={2} title={"Ерөнхий мэдээлэл"} />
 
         <div className="grid grid-cols-2 gap-x-4 w-full h-full">
-          <NameItem required name={"honog"} label="Төслийн төрөл нэр" />
           <InputNumberItem
-            name={"dun"}
-            required
-            label="Дүн"
-            maxLength={2}
-          />
+                name={"honog"}
+                required
+                label="Байршуулах хугацаа /хоног/"
+                maxLength={3}
+              />
+              <InputNumberItem
+                name={"dun"}
+                required
+                label="Шимтгэлийн дүн"
+                maxLength={7}
+              />
         </div>
         <div className="mt-10 mb-5 flex gap-5 justify-end ">
           <Button

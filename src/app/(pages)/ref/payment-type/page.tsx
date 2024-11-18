@@ -20,6 +20,10 @@ const PaymentTypePage = () => {
           title="Төлбөрийн хэлбэр"
           links={[
             {
+              label: "Үндсэн лавлах",
+              href: "#",
+            },
+            {
               label: "Төлбөрийн хэлбэр",
               noLink: true,
               href: "#",

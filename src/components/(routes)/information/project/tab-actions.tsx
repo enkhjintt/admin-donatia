@@ -3,30 +3,25 @@ import Button from "@/components/button";
 import TrashIcon from "@/components/icons/trash-icon";
 import DateBetweenCaseItem from "@/components/items/date-between-case-item";
 import SearchItem from "@/components/items/search-item";
-
-import SelectStatusItem from "@/components/items/status-select-item";
-
 import ValueCounter from "@/components/value-counter";
 import { isDateValid } from "@/utils/dateisValid";
 import { Form } from "antd";
 import { useState } from "react";
+import SelectProjectTypeItem from "@/components/items/project-type-select-item";
+import SelectProjectStatusItem from "@/components/items/project-status-select-item";
 
 type IProps = {
   resLength: number;
-  onChangeSearch: (serial_number: string) => void;
-  onTypeSearch: (device_type: string) => void;
+  onChangeSearch: (garchig: string) => void;
   onStartDateChange: (startDate: string) => void;
   onEndDateChange: (endDate: string) => void;
-  onStatusChange: (status: string) => void;
 };
 
 const ProjectTabActions: React.FC<IProps> = ({
   resLength = 0,
   onChangeSearch,
-  onTypeSearch,
   onStartDateChange,
   onEndDateChange,
-  onStatusChange,
 }) => {
   const [form] = Form.useForm();
   const values = Form.useWatch([], form);
@@ -38,9 +33,7 @@ const ProjectTabActions: React.FC<IProps> = ({
     form.resetFields();
     onChangeSearch("");
     onStartDateChange("");
-    onStatusChange("");
     onEndDateChange("");
-    onTypeSearch("");
   };
 
   return (
@@ -52,14 +45,10 @@ const ProjectTabActions: React.FC<IProps> = ({
         onValuesChange={(
           _,
           values: {
-            serial_number: string;
-            status: string;
-            device_type: string;
+            garchig: string;
           }
         ) => {
-          onChangeSearch(values.serial_number);
-          onStatusChange(values.status);
-          onTypeSearch(values.device_type);
+          onChangeSearch(values.garchig);
         }}
       >
         <FilterLayout
@@ -67,27 +56,22 @@ const ProjectTabActions: React.FC<IProps> = ({
             <>
               <SearchItem
                 label=""
-                placeholder="Төслийн нэрээр хайх"
-                name="serial_number"
-                className="col-span-3"
+                placeholder="Төслийн гарчигаар хайх"
+                name="garchig"
               />
-
-              <SearchItem
+              <SelectProjectTypeItem
                 label=""
-                allowClear={true}
-                placeholder="Төслийн төрлөөр хайх"
-                name={"device_type"}
+                placeholder="Төрлөөр хайх"
+                className="mt-1"
               />
             </>
           }
           BotRight={
             <>
-              <SelectStatusItem
-                name={"status"}
-                className="w-full mt-1"
-                allowClear={cleared}
-                placeholder="Төлөвөөр хайх"
+            <SelectProjectStatusItem
                 label=""
+                placeholder="Төлвөөр хайх"
+                className="mt-1"
               />
               <DateBetweenCaseItem
                 format="YYYY-MM-DD"
@@ -114,7 +98,7 @@ const ProjectTabActions: React.FC<IProps> = ({
             </>
           }
         />
-        {values?.serial_number && values?.serial_number.length > 0 && (
+        {values?.garchig && values?.garchig.length > 0 && (
           <ValueCounter length={resLength} />
         )}
       </Form>

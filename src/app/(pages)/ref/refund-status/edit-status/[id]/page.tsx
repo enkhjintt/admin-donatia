@@ -20,6 +20,10 @@ const EditRefundStatusPage = ({ params }: IProps) => {
           title="Буцаалтын төлөв"
           links={[
             {
+              label: "Үндсэн лавлах",
+              href: "#",
+            },
+            {
               label: "Буцаалтын төлөв",
               href: "/ref/bank",
             },

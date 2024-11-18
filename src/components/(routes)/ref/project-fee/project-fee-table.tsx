@@ -138,11 +138,12 @@ const ProjectFeeTable: React.FC<IProps> = () => {
       title: "Хугацаа ",
       dataIndex: "honog",
       fixed: "left",
+      render: (text: number) => `${text} хоног`,
     },
     {
       title: "Хураамжын дүн",
       dataIndex: "dun",
-      render: (text: number) => `${text}%`,
+      render: (text: number) => `${text}₮`,
     },
     {
       title: "Бүртгэсэн огноо",

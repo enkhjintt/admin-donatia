@@ -14,7 +14,7 @@ import SelectPositionItem from "@/components/items/position-select-item";
 import RegisterItem from "@/components/items/register-item";
 import SelectUserLevelItem from "@/components/items/user-level-select-item";
 import Wrapper from "@/components/wrapper";
-import SelectOrganizationItem from "@/components/items/org-select-item";
+import SelectOrganizationItem from "@/components/items/project-type-select-item";
 import { useNotification } from "@/hooks/use-notification";
 import Title from "@/components/title";
 import AimagCityItem from "@/components/items/aimag-select-item";
@@ -129,7 +129,6 @@ const ViewSystemUserForm: React.FC<IProps> = ({ id }) => {
   useEffect(() => {
     if (values?.graduated_date) {
       const formattedDate = formatDate(values.graduated_date);
-;
     }
   }, [values?.graduated_date]);
 

@@ -16,6 +16,10 @@ const AddProjectTypePage = () => {
           title="Төслийн төрөл"
           links={[
             {
+              label: "Үндсэн лавлах",
+              href: "#",
+            },
+            {
               label: "Төслийн төрөл",
               href: "/ref/project-type",
             },

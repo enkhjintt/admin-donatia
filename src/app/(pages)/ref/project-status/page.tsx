@@ -21,6 +21,10 @@ const ProjectStatusPage = () => {
           title="Төсөл төлөв"
           links={[
             {
+              label: "Үндсэн лавлах",
+              href: "#",
+            },
+            {
               label: "Төсөл төлөв",
               noLink: true,
               href: "#",

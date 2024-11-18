@@ -20,6 +20,10 @@ const PaymentStatusPage = () => {
           title="Төлбөрийн төлөв"
           links={[
             {
+              label: "Үндсэн лавлах",
+              href: "#",
+            },
+            {
               label: "Төлбөрийн төлөв",
               noLink: true,
               href: "#",

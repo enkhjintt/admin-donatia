@@ -17,6 +17,10 @@ const AddProjectClassPage = () => {
           title="Төслийн ангилал"
           links={[
             {
+              label: "Үндсэн лавлах",
+              href: "#",
+            },
+            {
               label: "Төслийн ангилал",
               href: "/ref/project-class",
             },

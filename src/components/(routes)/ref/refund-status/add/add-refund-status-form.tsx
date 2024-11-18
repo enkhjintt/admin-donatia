@@ -62,7 +62,7 @@ const AddRefundStatusForm: React.FC<IProps> = ({}) => {
         <Wrapper className="px-6 w-full ">
           <div className="flex items-center justify-center mt-5">
             <div className="grid grid-cols-3 gap-x-4 w-full h-full">
-              <NameItem required name={"butsaalt_tuluv_ner"} label="Буцаалтын төлөв нэр" />
+              <NameItem required name={"ner"} label="Буцаалтын төлөв нэр" />
             </div>
           </div>
           <div className="mt-10 mb-5 flex gap-5 justify-end">

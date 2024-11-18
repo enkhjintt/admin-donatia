@@ -21,6 +21,10 @@ const ProjectClassPage = () => {
           title="Төсөл ангилал"
           links={[
             {
+              label: "Үндсэн лавлах",
+              href: "#",
+            },
+            {
               label: "Төсөл ангилал",
               noLink: true,
               href: "#",

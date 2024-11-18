@@ -9,17 +9,14 @@ import { useNotification } from "@/hooks/use-notification";
 import { useRouter } from "next/navigation";
 import dayjs from "dayjs";
 
-import { getActiveStatusStyle } from "@/utils/style-utils";
-import { useProject } from "@/hooks/use-projects";
 import ProjectTabActions from "./tab-actions";
 import React from "react";
+import { useProject } from "@/hooks/use-projects";
 import { DeleteProject, ProjectResponse } from "@/api/information/projects";
 
 type IProps = {};
 
 const DEFAULT_SEARCH_VALUE = "" as const;
-
-
 
 const ProjectTable: React.FC<IProps> = () => {
   const router = useRouter();
@@ -29,9 +26,7 @@ const ProjectTable: React.FC<IProps> = () => {
   });
   const [loading, setLoading] = useState<boolean>(false);
   const [begin_date, setCreatedAt] = useState<string>("");
-  const [status, setStatusAt] = useState<string>("");
   const [end_date, setUpdatedAt] = useState<string>("");
-  const [device_type, setDevice] = useState<string>("");
   const [deleteModal, setDeleteModal] = useState<
     { visible: false } | { visible: true; selectedId: number }
   >({ visible: false });
@@ -46,7 +41,7 @@ const ProjectTable: React.FC<IProps> = () => {
     sortType: "",
   });
 
-  const [serialNumSearch, setNameSearch] = useDebouncedState<string>(
+  const [nameSearch, setNameSearch] = useDebouncedState<string>(
     DEFAULT_SEARCH_VALUE,
     500
   );
@@ -56,7 +51,7 @@ const ProjectTable: React.FC<IProps> = () => {
     isLoading,
     mutate,
   } = useProject(pagination, {
-    status: status,
+    garchig: nameSearch,
     sort_by: sortOrder.sortBy,
     sort_type: sortOrder.sortType,
     begin_date: begin_date,
@@ -69,25 +64,15 @@ const ProjectTable: React.FC<IProps> = () => {
 
   useEffect(() => {
     mutate();
-  }, [pagination, serialNumSearch, status, begin_date, end_date]);
+  }, [pagination, begin_date, end_date]);
 
   function handleChangeSearch(newSearch: string) {
     setNameSearch(newSearch);
-
     setPagination((prev) => ({ ...prev, page_number: 1 }));
   }
 
   function handleStartDate(begin_date: string) {
     setCreatedAt(begin_date);
-
-    setPagination((prev) => ({ ...prev, page_number: 1 }));
-  }
-  function handleType(device_type: string) {
-    setDevice(device_type);
-    setPagination((prev) => ({ ...prev, page_number: 1 }));
-  }
-  function handleStatus(status: string) {
-    setStatusAt(status);
 
     setPagination((prev) => ({ ...prev, page_number: 1 }));
   }
@@ -117,7 +102,6 @@ const ProjectTable: React.FC<IProps> = () => {
 
   const metaData = getMetaData(Projects);
 
-
   const handleDeleteProject = async () => {
     if (deleteModal.visible) {
       setLoading(true);
@@ -129,7 +113,7 @@ const ProjectTable: React.FC<IProps> = () => {
       if (response.success) {
         mutate();
 
-        success("Төхөөрөмж амжилттай устлаа!");
+        success("Төслийн ангилал амжилттай устлаа!");
 
         setDeleteModal({ visible: false });
       } else {
@@ -140,64 +124,62 @@ const ProjectTable: React.FC<IProps> = () => {
 
   //eye icon deer darahad edit huudas ruu shiljne
   const editHandler = (id: number) => {
-    router.push(`/information/project/edit-project/${id}`);
+    router.push(`/ref/project/edit-project/${id}`);
   };
 
-//delete icon deer darahad id-g selectleed ustgana
+  //delete icon deer darahad id-g selectleed ustgana
   const handleDeleteModal = (id: number) => {
     setDeleteModal({ visible: true, selectedId: id });
   };
 
-    //edit icon deer darahad edit huudas ruu shiljne
-  const eyeHandler = (id: number) => {
-    router.push(`/information/project/view-project/${id}`);
-  };
-
   const columns = [
     {
-      title: "Төслийн дугаар",
-      align: "center",
-      dataIndex: "number", //data index deer api/information/project/index.ts deer zarlasan type uudaa ugnu
-      width: "180px",
-    },
-    {
-      title: "Төслийн нэр",
-      dataIndex: "brand_name",
-      align: "center",
+      title: "Гарчиг",
+      dataIndex: "garchig",
       fixed: "left",
     },
-  
+    {
+      title: "Дэд гарчиг",
+      dataIndex: "ded_garchig",
+    },
+    {
+      title: "Ангилал",
+      dataIndex: "tusul_angilal_id",
+      render: (_: string, record: ProjectResponse) => {
+        return record.TusulAngilal?.ner ?? "-";
+      },
+    },
     {
       title: "Төрөл",
-      dataIndex: "type",
-      align: "center",
+      dataIndex: "tusul_turul_id",
+      render: (_: string, record: ProjectResponse) => {
+        return record.TusulTurul?.ner ?? "-";
+      },
     },
-  
     {
       title: "Төлөв",
-      align: "center",
-      sort: true,
-      width: 120,
-      render: (value: ProjectResponse) => (
-        <>{getActiveStatusStyle(value?.status)}</>
-      ),
+      dataIndex: "tusul_tuluv_id",
+      render: (_: string, record: ProjectResponse) => {
+        return record.TusulTuluv?.ner ?? "-";
+      },
+    },
+    {
+      title: "Төсөл илгээгч",
+      dataIndex: "hereglegch_id",
+      render: (_: string, record: ProjectResponse) => {
+        return record.Hereglegch?.ner ?? "-";
+      },
     },
     {
       title: "Бүртгэсэн огноо",
       dataIndex: "created_at",
       sorter: true,
-      align: "center",
-      width: 200,
-      render: (value: Date) => {
-        dayjs(value).format("YYYY-MM-DD HH:mm");
-      },
+      render: (value: Date) => <>{dayjs(value).format("YYYY-MM-DD HH:mm")}</>,
     },
     {
       title: "Шинэчилсэн огноо",
       dataIndex: "updated_at",
       sorter: true,
-      align: "center",
-      width: 200,
       render: (value: Date) => <>{dayjs(value).format("YYYY-MM-DD HH:mm")}</>,
     },
   ];
@@ -212,8 +194,6 @@ const ProjectTable: React.FC<IProps> = () => {
       />
       {/* tabActions ni table-n deerh haih uildluud */}
       <ProjectTabActions
-        onTypeSearch={handleType}
-        onStatusChange={handleStatus}
         onChangeSearch={handleChangeSearch}
         onStartDateChange={handleStartDate}
         onEndDateChange={handleEndDate}
@@ -223,9 +203,9 @@ const ProjectTable: React.FC<IProps> = () => {
       <CustomTable
         isAction
         isIndex
+        removeEye
         removeLock
         isLoading={loading}
-        eyeHandler={eyeHandler}
         editHandler={editHandler}
         trashHandler={handleDeleteModal}
         column={columns}

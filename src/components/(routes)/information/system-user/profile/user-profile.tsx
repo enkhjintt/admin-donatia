@@ -7,7 +7,7 @@ import { useState } from "react";
 import AimagCityItem from "@/components/items/aimag-select-item";
 import SelectKhorooItem from "@/components/items/khoroo-select-item";
 import NameItem from "@/components/items/name-item";
-import SelectOrganizationItem from "@/components/items/org-select-item";
+import SelectOrganizationItem from "@/components/items/project-type-select-item";
 import PhoneItem from "@/components/items/phone-item";
 import SelectPositionItem from "@/components/items/position-select-item";
 import RegisterItem from "@/components/items/register-item";
