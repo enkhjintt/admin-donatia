@@ -15,6 +15,10 @@ const AddProjectFeePage = () => {
           title="Төслийн хураамж"
           links={[
             {
+              label: "Үндсэн лавлах",
+              href: "#",
+            },
+            {
               label: "Төслийн хураамж",
               href: "/ref/project-fee",
             },

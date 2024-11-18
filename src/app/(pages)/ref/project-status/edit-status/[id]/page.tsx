@@ -22,6 +22,10 @@ const EditProjectStatusPage = ({ params }: IProps) => {
           title="Төслийн төлөв"
           links={[
             {
+              label: "Үндсэн лавлах",
+              href: "#",
+            },
+            {
               label: "Төслийн төлөв",
               href: "/ref/project-status",
             },

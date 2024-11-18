@@ -20,6 +20,10 @@ const ProjectTypePage = () => {
           title="Төсөл төрөл"
           links={[
             {
+              label: "Үндсэн лавлах",
+              href: "#",
+            },
+            {
               label: "Төсөл төрөл",
               noLink: true,
               href: "#",

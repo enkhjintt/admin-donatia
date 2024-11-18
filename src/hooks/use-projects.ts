@@ -8,8 +8,8 @@ import { ProjectResponse } from "@/api/information/projects";
 
 export function useProject(
   pagination?: DefaultPagination,
-  search?: { //end haih col zarlana
-    status?: string;
+  search?: {
+    garchig?: string;
     sort_by: string;
     sort_type: string;
     begin_date?: string;
@@ -19,7 +19,7 @@ export function useProject(
   const params = generateParams(pagination, search);
 
   const { data, isLoading, error, mutate } = useSWRImmutable(
-    `/project/?${params}`,
+    `/tusul/?${params}`,
     (url) => fetcher<PaginationResponse<ProjectResponse>>(url)
   );
 
@@ -36,7 +36,7 @@ export function useProject(
 
 export function useProjectById(id: number) {
   const { data, isLoading, mutate, error } = useSWRImmutable(
-    getDeviceById(id),
+    getProjectById(id),
     (url) => fetcher<ProjectResponse>(url)
   );
 
@@ -47,7 +47,7 @@ export function useProjectById(id: number) {
   return { data: undefined, isLoading, mutate };
 }
 
-export function getDeviceById(id: number | undefined) {
-  return `/project/${id}`;
+export function getProjectById(id: number | undefined) {
+  return `/tusul/get/${id}`;
 }
 

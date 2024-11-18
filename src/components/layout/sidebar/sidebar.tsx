@@ -101,6 +101,11 @@ const SideBar: React.FC<IProps> = ({ collapsed, toggleCollapsed }) => {
           icon: null,
         },
         {
+          name: `Төслийн хураамж  `,
+          path: "/ref/project-fee",
+          icon: null,
+        },
+        {
           name: `Төслийн төлөв  `,
           path: "/ref/project-status",
           icon: null,

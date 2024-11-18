@@ -21,6 +21,10 @@ const EditProjectClassPage = ({ params }: IProps) => {
           title="Төслийн ангилал"
           links={[
             {
+              label: "Үндсэн лавлах",
+              href: "#",
+            },
+            {
               label: "Төслийн ангилал",
               href: "/ref/bank",
             },

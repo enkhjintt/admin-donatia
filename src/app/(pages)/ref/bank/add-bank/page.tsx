@@ -15,6 +15,10 @@ const BankTypeEditPage = () => {
           title="Банкны төрөл"
           links={[
             {
+              label: "Үндсэн лавлах",
+              href: "#",
+            },
+            {
               label: "Банкны төрөл",
               href: "/ref/bank",
             },

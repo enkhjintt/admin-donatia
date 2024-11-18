@@ -22,7 +22,7 @@ import AimagCityItem from "@/components/items/aimag-select-item";
 import SelectKhorooItem from "@/components/items/khoroo-select-item";
 import DistrictItem from "@/components/items/sum-select-item";
 import Title from "@/components/title";
-import SelectOrganizationItem from "@/components/items/org-select-item";
+import SelectOrganizationItem from "@/components/items/project-type-select-item";
 import { addSystemUser } from "@/api/user/system-user";
 import { useNotification } from "@/hooks/use-notification";
 import DateItem from "@/components/items/date-item";

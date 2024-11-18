@@ -83,7 +83,7 @@ const EditRefundStatusForm: React.FC<IProps> = ({ id }) => {
         <Title level={2} title={"Ерөнхий мэдээлэл"} />
 
         <div className="grid grid-cols-3 gap-x-4 w-full h-full">
-          <NameItem required name={"ner"} label="Төслийн ангилал нэр" />
+          <NameItem required name={"ner"} label="Буцаалтын төлөв нэр" />
         </div>
         <div className="mt-10 mb-5 flex gap-5 justify-end ">
           <Button
@@ -92,7 +92,7 @@ const EditRefundStatusForm: React.FC<IProps> = ({ id }) => {
             placeholder="Болих"
             variant="text"
             className="rounded-2xl"
-            onClick={() => router.push("/ref/project-type")}
+            onClick={() => router.push("/ref/refund-status")}
           />
 
           <Button

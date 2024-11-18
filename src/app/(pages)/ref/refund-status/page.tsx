@@ -20,6 +20,10 @@ const RefundStatusPage = () => {
           title="Буцаалтын төлөв"
           links={[
             {
+              label: "Үндсэн лавлах",
+              href: "#",
+            },
+            {
               label: "Буцаалтын төлөв",
               noLink: true,
               href: "#",

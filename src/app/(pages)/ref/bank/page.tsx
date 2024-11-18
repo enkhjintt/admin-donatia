@@ -19,6 +19,10 @@ const BankTypePage = () => {
           title="Банк"
           links={[
             {
+              label: "Үндсэн лавлах",
+              href: "#",
+            },
+            {
               label: "Банк",
               noLink: true,
               href: "#",

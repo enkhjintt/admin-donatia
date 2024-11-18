@@ -19,6 +19,10 @@ const EditProjectFeePage = ({ params }: IProps) => {
           title="Төслийн хураамж"
           links={[
             {
+              label: "Үндсэн лавлах",
+              href: "#",
+            },
+            {
               label: "Төслийн хураамж",
               href: "/ref/project-fee",
             },
