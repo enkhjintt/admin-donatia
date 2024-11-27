@@ -13,6 +13,7 @@ import ProjectTabActions from "./tab-actions";
 import React from "react";
 import { useProject } from "@/hooks/use-projects";
 import { DeleteProject, ProjectResponse } from "@/api/information/projects";
+import { getPlanStatusStyle } from "@/utils/style-utils";
 
 type IProps = {};
 
@@ -124,7 +125,7 @@ const ProjectTable: React.FC<IProps> = () => {
 
   //eye icon deer darahad edit huudas ruu shiljne
   const editHandler = (id: number) => {
-    router.push(`/ref/project/edit-project/${id}`);
+    router.push(`/information/project/edit-project/${id}`);
   };
 
   //delete icon deer darahad id-g selectleed ustgana
@@ -136,12 +137,13 @@ const ProjectTable: React.FC<IProps> = () => {
     {
       title: "Гарчиг",
       dataIndex: "garchig",
+      width: "300px",
       fixed: "left",
     },
-    {
-      title: "Дэд гарчиг",
-      dataIndex: "ded_garchig",
-    },
+    // {
+    //   title: "Дэд гарчиг",
+    //   dataIndex: "ded_garchig",
+    // },
     {
       title: "Ангилал",
       dataIndex: "tusul_angilal_id",
@@ -158,10 +160,10 @@ const ProjectTable: React.FC<IProps> = () => {
     },
     {
       title: "Төлөв",
-      dataIndex: "tusul_tuluv_id",
-      render: (_: string, record: ProjectResponse) => {
-        return record.TusulTuluv?.ner ?? "-";
-      },
+      // dataIndex: "ner",
+      render: (value: ProjectResponse) => (
+        <>{getPlanStatusStyle(value?.TusulTuluv?.ner ?? null)}</>
+      ),
     },
     {
       title: "Төсөл илгээгч",

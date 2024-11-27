@@ -5,22 +5,6 @@ export const FocusClassName = "focus-visible-class";
 
 export const TableClassName = `mt-5    border border-x border-gray-200 bg-gray-200 rounded-md`;
 
-export const getStatusClass = (statusCode: string) => {
-  switch (statusCode) {
-    case "LOST":
-      return "bg-error-lighter text-error-dark";
-    case "INACTIVE":
-      return "bg-gray-400 text-gray-600";
-    case "FREEZE":
-      return "bg-info-lighter text-info-dark";
-    case "DAMAGED":
-      return "bg-warning-lighter text-warning-dark";
-    case "ACTIVE":
-      return "bg-success-light text-success-dark";
-    default:
-      return "";
-  }
-};
 //
 export const getGasStationStyle = (station_type: string | null) => {
   let text = "";
@@ -39,28 +23,35 @@ export const getGasStationStyle = (station_type: string | null) => {
   return <>{text}</>;
 };
 
-//захиалгын төлөв
-export const getOrderStatusStyle = (status: string | null) => {
+export const getPlanStatusStyle = (status: string | null) => {
   let style = "";
   let text = "";
 
   switch (status) {
-    case "Confirmed":
+    case "Зөвшөөрсөн":
       style = "bg-success-normal text-gray-200";
-      text = "Шийдвэрлэсэн";
+      text = "Зөвшөөрсөн";
       break;
-    case "Cancelled":
+    case "Амжилтгүй":
       style = "bg-error-normal text-gray-200";
-      text = "Цуцалсан";
+      text = "Амжилтгүй";
       break;
-    default:
+    case "Хүлээгдэж буй":
       style = "bg-warning-normal text-gray-200";
       text = "Хүлээгдэж буй";
+      break;
+    case "Хэрэгжсэн":
+      style = "bg-gray-300 text-base-white";
+      text = "Хэрэгжсэн";
+      break;
+    default:
+      style = "bg-gray-100 text-base-white";
+      text = "Тодорхойгүй";
       break;
   }
   return (
     <span
-      className={`py-1 block w-21 text-center  rounded-xl font-normal text-xs leading-3 ${style}`}
+      className={`py-1 block w-24 text-center  rounded-xl font-normal text-xs leading-3 ${style}`}
     >
       {text}
     </span>

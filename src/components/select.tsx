@@ -3,7 +3,7 @@ import ChevronDownIcon from "./icons/chevron-down-icon";
 
 const VARIANT = {
   primary:
-    "font-medium text-sm sm:text-base text-gray-800 primary-select bg-base-white",
+    "font-medium text-sm sm:text-base text-gray-700 !important primary-select bg-base-white",
   secondary: "font-normal text-base text-gray-900 secondary-select",
 } as const;
 type Variant = keyof typeof VARIANT;
@@ -35,7 +35,7 @@ const Select: React.FC<IProps> = ({
 
   const borderClasses = `border ${rounded ? "rounded-lg" : ""} ${
     disabled
-      ? "bg-base-white border-none text-gray-700 -ml-2"
+      ? "bg-base-white border-none text-gray-700!important -left-3 -top-4"
       : "border-gray-300 !important"
   }`;
 
@@ -46,7 +46,7 @@ const Select: React.FC<IProps> = ({
         size={size}
         className={`${variantClassName} ${borderClasses} ${className} ${
           isLabeled ? "-top-1" : "-top-1"
-        } h-10 w-full shadow-xs overflow-hidden aria-[invalid]:border-error-normal`}
+        } h-10 w-full shadow-xs overflow-hidden text-gray-700 aria-[invalid]:border-error-normal`}
         suffixIcon={
           !disabled ? (
             <ChevronDownIcon

@@ -61,7 +61,7 @@ const InputNumber: React.FC<IProps> = ({
               : "border border-gray-300"
             : ""
         } ${!isLabeled && "-top-1"} ${
-          disabled && "bg-base-white border-none text-gray-700 -ml-2"
+          disabled && "bg-base-white border-none text-gray-700 -left-3 -top-4"
         }`}
         suffix={
           <span className={status === "error" ? "inline" : "hidden"}>

@@ -33,7 +33,7 @@ const Input: React.FC<IProps> = ({
   const { status, errors } = Form.Item.useStatus();
 
   const heightClasses = {
-    sm: "h-8",
+    sm: "h-6",
     md: "h-10",
     lg: "h-12",
     fit: "h-fit",
@@ -53,14 +53,18 @@ const Input: React.FC<IProps> = ({
           suffix: "ml-2",
         }}
         className={`${className} ${
-          isLabeled && "relative -top-5"
+          isLabeled && "relative -top-5 pl-2"
         } py-2 px-3 w-full ${heightClass} ${
           variant !== "none"
             ? status === "error"
-              ? "border border-primary-normal"
+              ? "border border-misc-100"
               : "border border-gray-300"
             : "border-none"
-        } ${!isLabeled && "-top-1"} ${disabled && "bg-gray-100"}`}
+        } ${!isLabeled && "-top-1"} ${
+          disabled
+            ? "bg-base-white border-none text-gray-700 -left-3 -top-4"
+            : ""
+        }`}
         rootClassName={``}
         suffix={
           <span className={status === "error" ? "inline" : "hidden"}>
@@ -75,12 +79,12 @@ const Input: React.FC<IProps> = ({
           id={restProps["aria-describedby"]}
           role="alert"
           className={`flex flex-wrap max-w-full w-full ${
-            isLabeled ? "relative" : ""
+            isLabeled ? "relative ml-2" : ""
           } break-all`}
         >
           {errors.map((error, index) => (
             <li key={`error-${placeholder}-${index}`} className="mr-2 ">
-              <div className="text-sm text-primary-normal tracking-wide">
+              <div className="text-sm text-error-normal tracking-wide">
                 {error}
               </div>
             </li>
