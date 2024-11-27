@@ -3,6 +3,7 @@ import { ProjectClassResponse } from "@/api/ref/project-class";
 import { ProjectFeeResponse } from "@/api/ref/project-fee";
 import { ProjectStatusResponse } from "@/api/ref/project-status";
 import { ProjectTypeResponse } from "@/api/ref/project-type";
+import { UserResponse } from "@/api/user";
 
 export type ProjectResponse = {
   id: number;
@@ -13,7 +14,7 @@ export type ProjectResponse = {
   tuuh: string;
   delgerengui: string;
   zurag: string;
-  cover_zurag: string;
+  cover_zurag: string | null;
   hereglegch_id: number;
   tusul_turul_id: number;
   tusul_angilal_id: number;
@@ -26,7 +27,7 @@ export type ProjectResponse = {
   updated_by_id: number;
   updated_at: string;
   tusul_tuluv_id: number;
-  Hereglegch: null | any;
+  Hereglegch: null | UserResponse;
   TusulTurul: null | ProjectTypeResponse;
   TusulAngilal: null | ProjectClassResponse;
   AimagHot: null | any;
@@ -36,8 +37,17 @@ export type ProjectResponse = {
   UilchilgeeniiHuraamj: null | ProjectFeeResponse;
 };
 
-export function CreateProject(data: ProjectResponse) {
-  return api({ url: "/tusul/create", method: "POST", data });
+export function CreateProject(data: FormData) {
+  return api({
+    url: `/tusul/create`,
+    method: "POST",
+    data,
+    config: {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    },
+  });
 }
 
 export function UpdateProject(id: number, data: ProjectResponse) {

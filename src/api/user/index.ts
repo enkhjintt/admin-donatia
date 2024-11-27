@@ -67,22 +67,11 @@ export type TUser = {
   };
 };
 
-export type DriverCerf = {
-  user_id: number;
-  driver_license_type: string;
-  license_number: string;
-  graduated_date: string;
-};
+
 
 export type UserResponse = {
   User: any;
-  driver: {
-    user_id: number | null;
-    driver_license_type: string | null;
-    license_number: string | null;
-    graduated_date: string | null;
-    expired_date: string | null;
-  };
+
   org_user: {
     organization_id: string;
     user_id: number;
