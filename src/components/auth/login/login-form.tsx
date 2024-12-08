@@ -177,13 +177,6 @@ const LoginForm: React.FC<TProps> = () => {
 
         <div className="flex flex-col items-center space-y-4">
           <SubmitButton form={form} loading={loading} placeholder={"Нэвтрэх"} />
-          <Title title={"Хэрвээ бүртгэл үүсгээгүй бол"} level={0} />
-          <Button
-            loading={loading}
-            placeholder="Бүртгүүлэх"
-            variant="text"
-            className="w-full"
-          />
         </div>
       </Form>
     </>
