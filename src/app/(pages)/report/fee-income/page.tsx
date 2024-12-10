@@ -14,6 +14,7 @@ const SuccessProjectPage = () => {
       <SectionLayout>
         <PageHeader
           title="Үйлчилгээний хураамжийн орлогын тайлан "
+
           links={[
             {
               label: "Тайлан",
@@ -21,6 +22,7 @@ const SuccessProjectPage = () => {
             },
             {
               label: "Төсөл сайтад байршуулсан үйлчилгээний хураамжаас олсон орлогын тайлан",
+
               noLink: true,
               href: "#",
             },

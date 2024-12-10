@@ -13,6 +13,7 @@ const BankTypePage = () => {
     <>
       <SectionLayout>
         <PageHeader
+
           title="Бүх төслийн статистик мэдээлэл (бүтэн жилээр)"
           links={[
             {
@@ -26,7 +27,9 @@ const BankTypePage = () => {
             },
           ]}
         />
+
         <HomeForm />
+
       </SectionLayout>
     </>
   );

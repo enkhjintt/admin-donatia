@@ -20,6 +20,7 @@ import {
 import dayjs from "dayjs";
 import React, { useState } from "react";
 
+
 type DataPoint = {
   name: string;
   uv: number;
@@ -95,12 +96,14 @@ const HomeForm: React.FC = () => {
           chartHeight={400}
           yAxisDomainMax={60}
           desc="Donatia сайтад бүртгүүлсэн нийт төслийн тоог сар тус бүрээр харуулна"
+
         />
       </div>
       <div className="w-full grid grid-cols-2 gap-4">
         <CustomPieChart
           topHeader="Төслийн төлөв"
           data={pieStatusData}
+
           desc="Donatia сайтад бүртгүүлсэн нийт төслийн төлвийн тоог харуулна"
         />
         <div className="w-full rounded-lg shadow-lg bg-base-white p-8 flex flex-col items-center justify-center">
@@ -110,6 +113,9 @@ const HomeForm: React.FC = () => {
           </p>
           <img src="/image/image.png" alt="" width={160} height={160} />
         </div>
+
+        />
+
       </div>
     </div>
   );

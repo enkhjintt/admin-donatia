@@ -10,11 +10,13 @@ export function useReportSuccess(
   sum_percentage_dun?: number,
   search?: {
     //end haih col zarlana
+
     garchig?: string;
     sort_by: string;
     sort_type: string;
     created_at?: string;
     calculated_end_date?: string;
+
   }
 ) {
   const params = generateParams(pagination, search);

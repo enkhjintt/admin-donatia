@@ -21,7 +21,9 @@ const FeeIncomePage = () => {
               href: "#",
             },
             {
+
               label: "Амжилттай төслийн шимтгэлээс олсон орлогын тайлан",
+
               noLink: true,
               href: "#",
             },
