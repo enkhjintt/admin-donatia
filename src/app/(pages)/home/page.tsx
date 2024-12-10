@@ -5,7 +5,7 @@ import SectionLayout from "@/components/section-layout";
 import HomeForm from "@/components/(routes)/home/home-form";
 
 export const metadata: Metadata = {
-  title: "Нүүр хуудас",
+  title: "Бүх төсөл | Нүүр хуудас",
 };
 
 const BankTypePage = () => {
@@ -13,16 +13,23 @@ const BankTypePage = () => {
     <>
       <SectionLayout>
         <PageHeader
-          title="Нүүр хуудас"
+
+          title="Бүх төслийн статистик мэдээлэл (бүтэн жилээр)"
           links={[
             {
-              label: "Нийт төслүүд",
+              label: "Нүүр хуудас",
+              href: "#",
+            },
+            {
+              label: "Бүх төсөл",
               noLink: true,
               href: "#",
             },
           ]}
         />
-        <HomeForm/>
+
+        <HomeForm />
+
       </SectionLayout>
     </>
   );

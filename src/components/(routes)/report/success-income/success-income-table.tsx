@@ -7,6 +7,9 @@ import { getMetaData } from "@/utils/pagination-search";
 import dayjs from "dayjs";
 import { useReportSuccess } from "@/hooks/use-report-success";
 
+import SuccessTabActions from "./tab-actions";
+
+
 const DEFAULT_SEARCH_VALUE = "" as const;
 
 const SuccessIncomeTable: React.FC = () => {
@@ -15,8 +18,10 @@ const SuccessIncomeTable: React.FC = () => {
     page_size: 10,
   });
   const [loading, setLoading] = useState<boolean>(false);
-  const [begin_date, setCreatedAt] = useState<string>("");
-  const [end_date, setUpdatedAt] = useState<string>("");
+
+  const [created_at, setCreatedAt] = useState<string>("");
+  const [calculated_end_date, setUpdatedAt] = useState<string>("");
+
 
   const [sortOrder, setSortOrder] = useState({
     sortBy: "",
@@ -33,10 +38,13 @@ const SuccessIncomeTable: React.FC = () => {
     isLoading,
     mutate,
   } = useReportSuccess(pagination, undefined, {
+
+    garchig: nameSearch,
     sort_by: sortOrder.sortBy,
     sort_type: sortOrder.sortType,
-    begin_date,
-    end_date,
+    created_at,
+    calculated_end_date,
+
   });
 
   useEffect(() => {
@@ -45,7 +53,14 @@ const SuccessIncomeTable: React.FC = () => {
 
   useEffect(() => {
     mutate();
-  }, [pagination, nameSearch, begin_date, end_date]);
+
+  }, [pagination, nameSearch, created_at, calculated_end_date]);
+  function handleChangeSearch(newSearch: string) {
+    setNameSearch(newSearch);
+    setPagination((prev) => ({ ...prev, page_number: 1 }));
+  }
+
+
 
   const handleStartDate = (startDate: string) => {
     setCreatedAt(startDate);
@@ -79,6 +94,9 @@ const SuccessIncomeTable: React.FC = () => {
       title: "Төслийн нэр",
       dataIndex: "garchig",
       fixed: "left",
+
+      width: "250px",
+
       render: (value: string) => value || "-",
     },
     {
@@ -87,27 +105,48 @@ const SuccessIncomeTable: React.FC = () => {
       render: (value: string) => value || "-",
     },
     {
+
+      title: "Санхүүжилт",
+      dataIndex: "sanhuujiltiin_dun",
+      render: (value: number) => `${value.toLocaleString()}₮` || "-",
+    },
+    {
+
       title: "Шимтгэл",
       dataIndex: "shimtgel_huvi",
       render: (text: number) => `${text} %`,
     },
+
     {
-      title: "Дүн",
+      title: "Орлогын дүн",
+
       dataIndex: "percentage_dun",
       render: (value: number) => `${value.toLocaleString()}₮` || "-",
     },
     {
-      title: "Төёөл дууссан огноо",
+
+      title: "Төсөл дууссан огноо",
+
       dataIndex: "tusul_duussan_ognoo",
       sorter: true,
       render: (value: string) => <>{dayjs(value).format("YYYY-MM-DD HH:mm")}</>,
     },
     {
-      title: "Огноо",
+
+      title: "Эхлэх огноо",
+
       dataIndex: "created_at",
       sorter: true,
       render: (value: string) => <>{dayjs(value).format("YYYY-MM-DD HH:mm")}</>,
     },
+
+    {
+      title: "Дуусах огноо",
+      dataIndex: "calculated_calculated_end_date",
+      sorter: true,
+      render: (value: string) => <>{dayjs(value).format("YYYY-MM-DD HH:mm")}</>,
+    },
+
   ];
 
   const metaData = getMetaData(reportData);
@@ -116,9 +155,18 @@ const SuccessIncomeTable: React.FC = () => {
 
   return (
     <>
+
+      <SuccessTabActions
+        onChangeSearch={handleChangeSearch}
+        onStartDateChange={handleStartDate}
+        onEndDateChange={handleEndDate}
+        resLength={0}
+      />
+
     <div className="w-full flex text-justify  text-gray-800 text-lg">
           Амжилттай төслийн шимтгэлээс олсон орлогын тайлан
       </div>
+
       <CustomTable
         isAction
         isIndex

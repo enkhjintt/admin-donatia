@@ -3,6 +3,7 @@ export type Success = {
   created_at: string;
   tusul_duussan_ognoo: string;
   tusul_turul_ner: string;
+  sanhuujiltiin_dun: string;
   shimtgel_huvi: number;
   percentage_dun: number;
 };

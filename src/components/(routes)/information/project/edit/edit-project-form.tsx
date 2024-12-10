@@ -105,6 +105,24 @@ const EditProjectForm: React.FC<IProps> = ({ id }) => {
       onFinish={handleSubmit}
     >
       <Wrapper className="px-20 py-10">
+        <div className="flex gap-5 justify-end mb-8">
+          <Button
+            disabled={loading}
+            placeholder="Болих"
+            padding="double"
+            variant="text"
+            className="rounded-2xl"
+            onClick={() => router.replace("/information/project")}
+          />
+          <Button
+            disabled={loading}
+            variant="primary"
+            padding="double"
+            htmlType="submit"
+            placeholder="Төслийн төлөв өөрчлөх"
+            className="rounded-2xl"
+          />
+        </div>
         <span className="text-gray-600 text-lg font-normal mb-1">
           Төслийн мэдээллүүдийг шаардлагын дагуу хянан шаардлагатай тохиолдолд
           `Төслийн төлөв`-г өөрчилнө үү
@@ -112,7 +130,11 @@ const EditProjectForm: React.FC<IProps> = ({ id }) => {
         <Title level={2} title="Төслийн ерөнхий мэдээлэл" />
         <div className="grid grid-cols-1 gap-x-4 w-full">
           <SelectProjectStatusItem name={"tusul_tuluv_id"} />
-          <SelectProjectFeeItem readonly name={"uilchilgeenii_huraamj_id"} />
+          <SelectProjectFeeItem
+            readonly
+            name={"uilchilgeenii_huraamj_id"}
+            disabled
+          />
           <InputItem name="garchig" label="Гарчиг" disabled />
           <InputItem name="ded_garchig" label="Дэд гарчиг" disabled />
 
@@ -159,6 +181,7 @@ const EditProjectForm: React.FC<IProps> = ({ id }) => {
             readonly
             showCounter
             maxLength={900}
+            disabled
           />
           <TextAreaItem
             name="ersdel"
@@ -166,6 +189,7 @@ const EditProjectForm: React.FC<IProps> = ({ id }) => {
             readonly
             showCounter
             maxLength={900}
+            disabled
           />
           <TextAreaItem
             name="tuuh"
@@ -173,36 +197,18 @@ const EditProjectForm: React.FC<IProps> = ({ id }) => {
             readonly
             showCounter
             maxLength={900}
+            disabled
           />
         </div>
         <Title level={2} title="Төслийн санхүүжилтын мэдээлэл" />
         <SelectProjectTypeItem name={"tusul_turul_id"} disabled />
-      
+
         <InputNumberItem
           name="sanhuujiltiin_dun"
           label="Санхүүжилтын дүн"
           disabled
           maxLength={8}
         />
-
-        <div className="flex gap-5 justify-end">
-          <Button
-            disabled={loading}
-            placeholder="Болих"
-            padding="double"
-            variant="text"
-            className="rounded-2xl"
-            onClick={() => router.replace("/information/project")}
-          />
-          <Button
-            disabled={loading}
-            variant="primary"
-            padding="double"
-            htmlType="submit"
-            placeholder="Хадгалах"
-            className="rounded-2xl"
-          />
-        </div>
       </Wrapper>
     </Form>
   );

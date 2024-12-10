@@ -95,15 +95,27 @@ const HomeForm: React.FC = () => {
           topGreen="Тоо"
           chartHeight={400}
           yAxisDomainMax={60}
-          desc="Админ вебд бүртгүүлсэн нийт төслийн тоог сар тус бүрээр харуулна"
+          desc="Donatia сайтад бүртгүүлсэн нийт төслийн тоог сар тус бүрээр харуулна"
+
         />
       </div>
       <div className="w-full grid grid-cols-2 gap-4">
         <CustomPieChart
           topHeader="Төслийн төлөв"
           data={pieStatusData}
-          desc="Админ вебд бүртгүүлсэн нийт төслийн төлвийн тоог харуулна"
+
+          desc="Donatia сайтад бүртгүүлсэн нийт төслийн төлвийн тоог харуулна"
         />
+        <div className="w-full rounded-lg shadow-lg bg-base-white p-8 flex flex-col items-center justify-center">
+          <p className="text-justify text-gray-800 text-lg leading-5">
+            <strong>Тайлбар: </strong>1 жилийн хугацаанд `Donatia` сайтад
+            бүртгүүлсэн нийт төслийн статистик мэдээллийг харуулна.
+          </p>
+          <img src="/image/image.png" alt="" width={160} height={160} />
+        </div>
+
+        />
+
       </div>
     </div>
   );

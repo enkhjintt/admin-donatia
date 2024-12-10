@@ -28,7 +28,7 @@ export const getPlanStatusStyle = (status: string | null) => {
   let text = "";
 
   switch (status) {
-    case "Зөвшөөрсөн":
+    case "Шинэ төсөл":
       style = "bg-success-normal text-gray-200";
       text = "Зөвшөөрсөн";
       break;
@@ -40,7 +40,7 @@ export const getPlanStatusStyle = (status: string | null) => {
       style = "bg-warning-normal text-gray-200";
       text = "Хүлээгдэж буй";
       break;
-    case "Хэрэгжсэн":
+    case "Амжилттай":
       style = "bg-gray-300 text-base-white";
       text = "Хэрэгжсэн";
       break;
