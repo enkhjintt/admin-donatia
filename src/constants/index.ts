@@ -20,6 +20,7 @@ export type TMetaData = {
 
 export type PaginationResponse<T> = {
   items: T[];
+  sum_percentage_dun?: number;
 } & TMetaData;
 
 export const colorThemeNames = ['light', 'dark'] as const;

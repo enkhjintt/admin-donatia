@@ -2,34 +2,34 @@ import { Metadata } from "next";
 
 import PageHeader from "@/components/page-header";
 import SectionLayout from "@/components/section-layout";
+import SuccessProjectForm from "@/components/(routes)/dashboard/success-project/success-project-form";
 
 export const metadata: Metadata = {
-  title: "Төсөл | Дашбоард",
+  title: "Амжилттай төсөл | Дашбоард",
 };
 
-const DashboardPage = () => {
+const SuccessProjectPage = () => {
   return (
     <>
       <SectionLayout>
         <PageHeader
-          title="Төсөл"
+          title="Амжилттай төсөл"
           links={[
             {
               label: "Дашбоард",
-              noLink: true,
               href: "#",
             },
             {
-              label: "Төсөл",
+              label: "Амжилттай төсөл",
               noLink: true,
               href: "#",
             },
           ]}
         />
-        hi
+        <SuccessProjectForm/>
       </SectionLayout>
     </>
   );
 };
 
-export default DashboardPage;
+export default SuccessProjectPage;

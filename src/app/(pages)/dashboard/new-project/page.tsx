@@ -3,29 +3,34 @@ import { Metadata } from "next";
 import PageHeader from "@/components/page-header";
 import SectionLayout from "@/components/section-layout";
 import HomeForm from "@/components/(routes)/home/home-form";
+import NewProjectForm from "@/components/(routes)/dashboard/new-project/new-project-form";
 
 export const metadata: Metadata = {
-  title: "Нүүр хуудас",
+  title: "Шинэ төслүүд | Дашбоард",
 };
 
-const BankTypePage = () => {
+const NewProjectPage = () => {
   return (
     <>
       <SectionLayout>
         <PageHeader
-          title="Нүүр хуудас"
+          title="Шинэ төслүүд"
           links={[
             {
-              label: "Нийт төслүүд",
+              label: "Дашбоард",
+              href: "#",
+            },
+            {
+              label: "Шинэ төслүүд",
               noLink: true,
               href: "#",
             },
           ]}
         />
-        <HomeForm/>
+        <NewProjectForm />
       </SectionLayout>
     </>
   );
 };
 
-export default BankTypePage;
+export default NewProjectPage;

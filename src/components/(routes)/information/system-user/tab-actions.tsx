@@ -12,7 +12,7 @@ import FilterLayout from "@/components/filter-layout";
 
 type IProps = {
   resLength: number;
-  onChangeSearch: (first_name: string) => void;
+  onChangeSearch: (ner: string) => void;
   onRoleSearch: (roles: string) => void;
   onStartDateChange: (startDate: string) => void;
   onEndDateChange: (endDate: string) => void;
@@ -51,34 +51,21 @@ const SystemUserTabActions: React.FC<IProps> = ({
         onValuesChange={(
           _,
           values: {
-            organization_name: string;
-            first_name: string;
-            roles: string;
+            ner: string;
           }
         ) => {
-          onChangeSearch(values.first_name);
-          onOrgSearch(values.organization_name);
+          onChangeSearch(values.ner);
         }}
       >
         <FilterLayout
           BotLeft={
             <>
               <SearchItem
-                name={" organization_name"}
-                placeholder="Байгууллагаар хайх"
-                label=""
-                className="w-full"
-              />
-              <SearchItem
                 label=""
                 placeholder="Нэрээр хайх"
-                name="first_name"
+                name="ner"
                 className="w-full"
               />
-            </>
-          }
-          BotRight={
-            <>
               <DateBetweenCaseItem
                 format="YYYY-MM-DD"
                 isLabeled
@@ -95,6 +82,11 @@ const SystemUserTabActions: React.FC<IProps> = ({
                   onEndDateChange(date);
                 }}
               />
+            </>
+          }
+          BotRight={
+            <>
+              
 
               <Button
                 variant="primary"

@@ -70,6 +70,7 @@ export type TUser = {
 
 
 export type UserResponse = {
+  ner: string;
   User: any;
 
   org_user: {

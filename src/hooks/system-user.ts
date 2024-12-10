@@ -9,7 +9,7 @@ import useSWRImmutable from "swr/immutable";
 export function useSystemUsers(
   pagination?: DefaultPagination,
   search?: {
-    first_name?: string;
+    ner?: string;
     organization_name?: string;
     roles?: string | string[];
     // org_name?: string;

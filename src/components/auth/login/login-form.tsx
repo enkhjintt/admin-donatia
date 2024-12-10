@@ -141,7 +141,6 @@ const LoginForm: React.FC<TProps> = () => {
       success("Амжилттай нэвтэрлээ!");
 
       router.replace("/home");
-
     } else {
       error(response?.error || "Нэвтрэхэд алдаа гарлаа");
     }
