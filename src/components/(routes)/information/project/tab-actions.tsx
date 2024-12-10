@@ -63,6 +63,7 @@ const ProjectTabActions: React.FC<IProps> = ({
                 label=""
                 placeholder="Төрлөөр хайх"
                 className="mt-1"
+                name={"tusul_turul_ner"}
               />
             </>
           }
@@ -72,6 +73,7 @@ const ProjectTabActions: React.FC<IProps> = ({
                 label=""
                 placeholder="Төлвөөр хайх"
                 className="mt-1"
+                name="tusul_tuluv_ner"
               />
               <DateBetweenCaseItem
                 format="YYYY-MM-DD"

@@ -51,12 +51,12 @@ const SideBar: React.FC<IProps> = ({ collapsed, toggleCollapsed }) => {
       code: "AB",
       icon: <DashboardIcon color="fill-gray-600" />,
       items: [
-        { name: "Төсөл", path: "/dashboard/project", icon: null },
         {
-          name: "Санхүүжилт",
-          path: "/dashboard/fundeamental",
+          name: "Амжилттай төслүүд",
+          path: "/dashboard/success-project",
           icon: null,
         },
+        { name: "Шинэ төслүүд", path: "/dashboard/new-project", icon: null },
       ],
     },
     {
@@ -139,18 +139,18 @@ const SideBar: React.FC<IProps> = ({ collapsed, toggleCollapsed }) => {
       icon: <ReportIcon color="fill-gray-600" />,
       items: [
         {
-          name: `Хэрэглэгчдийн тайлан`,
-          path: "/report/users",
+          name: `Үйлчилгээний хураамжийн орлогын тайлан`,
+          path: "/report/fee-income",
           icon: null,
         },
         {
-          name: `Төслийн явцын тайлан`,
-          path: "/report/project-progress",
+          name: `Амжилттай төслийн орлогын тайлан`,
+          path: "/report/success-income",
           icon: null,
         },
         {
-          name: `Төслийн тайлан`,
-          path: "/report/projects",
+          name: `Жилийн орлогын тайлан`,
+          path: "/report/year-income",
           icon: null,
         },
       ],

@@ -62,7 +62,7 @@ const SystemUserTable: React.FC<IProps> = () => {
     isLoading,
     mutate,
   } = useSystemUsers(pagination, {
-    first_name: firstNameSearch,
+    ner: firstNameSearch,
     organization_name: orgSearch,
     roles: roleSearch,
     sort_by: sortuser.sortBy,
@@ -133,43 +133,14 @@ const SystemUserTable: React.FC<IProps> = () => {
 
   const columns = [
     {
-      title: "Хэрэглэгчийн нэр, цахим хаяг",
-      key: "email_full_name",
-      fixed: "left",
-      width: "300px",
-      render: (text: any, record: any) => (
-        <>
-          <div className="flex flex-row">
-            <div className="basis-1/4">
-              <Avatar
-                style={{ verticalAlign: "middle" }}
-                size="large"
-                src={record.profile_picture_url}
-              >
-                {record.first_name.charAt(0)}
-              </Avatar>
-            </div>
-            <div className="basis-3/4">
-              <span>{`${record.email}`}</span>
-              <br />
-              <span className="text-gray-600">{`${record.last_name.charAt(
-                0
-              )}. ${record.first_name}`}</span>
-            </div>
-          </div>
-        </>
-      ),
-    },
-
-    {
-      title: "Байгууллага",
-      dataIndex: "organization_name",
-      key: "organization_name",
+      title: "Нэр",
+      dataIndex: "ner",
+      key: "ner",
     },
     {
-      title: "Албан тушаал",
-      dataIndex: "position_name",
-      key: "position_name",
+      title: "Цахим хаяг",
+      dataIndex: "email",
+      key: "email",
     },
 
     {
