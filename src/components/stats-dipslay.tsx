@@ -11,7 +11,7 @@ export default function StatsDisplay({
   className,
 }: {
   icon: React.ReactNode;
-  valueCount: number;
+  valueCount?: number;
   percentage?: number;
   color?: string;
   width?: string;
@@ -28,7 +28,7 @@ export default function StatsDisplay({
           <h6 className="text-gray-600 text-base mb-2 leading-4 2xl:leading-6">
             {text}
           </h6>
-          <p className="font-bold text-2xl  text-gray-800 leading-4 2xl:leading-6">{`${valueCount} ${
+          <p className="font-bold text-2xl  text-gray-800 leading-4 2xl:leading-6">{`${valueCount || ""}  ${
             label || ""
           }`}</p>
         </div>

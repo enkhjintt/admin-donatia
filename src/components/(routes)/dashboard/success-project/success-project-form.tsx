@@ -2,6 +2,7 @@
 
 import ClassPurpleIcon from "@/components/icons/class-purple-icon";
 import ClassRedIcon from "@/components/icons/class-red-icon";
+import ClassYellowIcon from "@/components/icons/class-yellow-icon";
 import CustomPieChart, { PieChartData } from "@/components/pie-chart";
 import StatsDisplay from "@/components/stats-dipslay";
 import { useSuccessClass, useSuccessType } from "@/hooks/use-dashboard-data";
@@ -49,7 +50,13 @@ const SuccessProjectForm: React.FC = () => {
 
   return (
     <div id="chart-container" className="space-y-4">
-      <div className="w-full grid grid-cols-2 gap-4">
+      <div className="w-full grid grid-cols-4 gap-4">
+        {/* <div className="col"></div> */}
+      <StatsDisplay
+            className="py-4 col-span-2"
+            icon={<ClassYellowIcon/>}
+            text={"Тайлбар: Амжилттай төслийн статистик мэдээллийг (Бүтэн жилээр) харуулж байна."}
+          />
         {filteredStatusData?.map((status) => (
           <StatsDisplay
             key={status.TurulNer}

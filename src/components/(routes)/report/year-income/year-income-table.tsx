@@ -8,6 +8,7 @@ import { useReportFee } from "@/hooks/use-report-fee";
 import { getMetaData } from "@/utils/pagination-search";
 import dayjs from "dayjs";
 import { useReportYear } from "@/hooks/use-report-year";
+import YearTabActions from "./tab-actions";
 
 const DEFAULT_SEARCH_VALUE = "" as const;
 
@@ -35,6 +36,7 @@ const YearIncomeTable: React.FC = () => {
     isLoading,
     mutate,
   } = useReportYear(pagination, undefined, {
+    orlogo_type: nameSearch,
     sort_by: sortOrder.sortBy,
     sort_type: sortOrder.sortType,
     begin_date,
@@ -49,6 +51,10 @@ const YearIncomeTable: React.FC = () => {
     mutate();
   }, [pagination, nameSearch, begin_date, end_date]);
 
+  function handleChangeSearch(newSearch: string) {
+    setNameSearch(newSearch);
+    setPagination((prev) => ({ ...prev, page_number: 1 }));
+  }
   const handleStartDate = (startDate: string) => {
     setCreatedAt(startDate);
     setPagination((prev) => ({ ...prev, page_number: 1 }));
@@ -103,14 +109,17 @@ const YearIncomeTable: React.FC = () => {
   return (
     <>
       <div className="w-full grid grid-cols-1 text-justify  ">
-        <span className="text-gray-800 text-lg">
-          1 жилийн нийт орлогын тайлан
-        </span>
         <span className="text-gray-600 text-sm">
           `Төсөл байршуулсан үйлчилгээний хураамж` болон `Амжилттай төсөл`-н
-          шимтгэлээс олсон 1 жилийн нийт орлогын хэмжээг илэрхийлнэ.
+          шимтгэлээс олсон 1 жилийн (1 сарын 1 өдрөөс өнөөдрийг хүртэлх) нийт
+          орлогын хэмжээг илэрхийлнэ.
         </span>
       </div>
+      {/* <YearTabActions
+        onStartDateChange={handleStartDate}
+        onEndDateChange={handleEndDate}
+        resLength={0} 
+        onChangeSearch={handleChangeSearch }/> */}
       <CustomTable
         isAction
         isIndex

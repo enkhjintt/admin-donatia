@@ -10,7 +10,7 @@ export function useReportYear(
   sum_percentage_dun?: number,
   search?: {
     //end haih col zarlana
-    honog?: string;
+    orlogo_type?: string;
     sort_by: string;
     sort_type: string;
     begin_date?: string;

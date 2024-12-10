@@ -2,22 +2,22 @@
 
 import React, { useEffect, useState } from "react";
 import CustomTable from "@/components/table/custom-table";
-import Wrapper from "@/components/wrapper";
 import { useDebouncedState } from "@/hooks/use-debounced-state";
 import { useReportFee } from "@/hooks/use-report-fee";
 import { getMetaData } from "@/utils/pagination-search";
 import dayjs from "dayjs";
+import FeeTabActions from "./tab-actions";
 
 const DEFAULT_SEARCH_VALUE = "" as const;
 
 const FeeIncomeTable: React.FC = () => {
   const [pagination, setPagination] = useState({
     page_number: 1,
-    page_size: 10,
+    page_size: 50,
   });
   const [loading, setLoading] = useState<boolean>(false);
-  const [begin_date, setCreatedAt] = useState<string>("");
-  const [end_date, setUpdatedAt] = useState<string>("");
+  const [created_at, setCreatedAt] = useState<string>("");
+  const [calculated_end_date, setUpdatedAt] = useState<string>("");
 
   const [sortOrder, setSortOrder] = useState({
     sortBy: "",
@@ -34,10 +34,11 @@ const FeeIncomeTable: React.FC = () => {
     isLoading,
     mutate,
   } = useReportFee(pagination, undefined, {
+    garchig: nameSearch,
     sort_by: sortOrder.sortBy,
     sort_type: sortOrder.sortType,
-    begin_date,
-    end_date,
+    created_at,
+    calculated_end_date,
   });
 
   useEffect(() => {
@@ -46,8 +47,12 @@ const FeeIncomeTable: React.FC = () => {
 
   useEffect(() => {
     mutate();
-  }, [pagination, nameSearch, begin_date, end_date]);
+  }, [pagination, nameSearch, created_at, calculated_end_date]);
 
+  function handleChangeSearch(newSearch: string) {
+    setNameSearch(newSearch);
+    setPagination((prev) => ({ ...prev, page_number: 1 }));
+  }
   const handleStartDate = (startDate: string) => {
     setCreatedAt(startDate);
     setPagination((prev) => ({ ...prev, page_number: 1 }));
@@ -93,8 +98,14 @@ const FeeIncomeTable: React.FC = () => {
       render: (value: number) => `${value.toLocaleString()}₮` || "-",
     },
     {
-      title: "Огноо",
+      title: "Эхлэх огноо",
       dataIndex: "created_at",
+      sorter: true,
+      render: (value: string) => <>{dayjs(value).format("YYYY-MM-DD HH:mm")}</>,
+    },
+    {
+      title: "Дуусах огноо",
+      dataIndex: "calculated_calculated_end_date",
       sorter: true,
       render: (value: string) => <>{dayjs(value).format("YYYY-MM-DD HH:mm")}</>,
     },
@@ -105,10 +116,12 @@ const FeeIncomeTable: React.FC = () => {
   const tableData = reportData?.items || [];
 
   return (
-    <>
-      <div className="w-full flex text-justify  text-gray-800 text-lg">
-          Төсөл байршуулсан үйлчилгээний хураамжаас олсон орлогын тайлан
-      </div>
+    <><FeeTabActions
+    onChangeSearch={handleChangeSearch}
+    onStartDateChange={handleStartDate}
+    onEndDateChange={handleEndDate}
+    resLength={0}
+  />
       <CustomTable
         isAction
         isIndex

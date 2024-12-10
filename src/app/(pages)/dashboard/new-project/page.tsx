@@ -14,7 +14,7 @@ const NewProjectPage = () => {
     <>
       <SectionLayout>
         <PageHeader
-          title="Шинэ төслүүд"
+          title="Шинэ төслийн статистик мэдээлэл"
           links={[
             {
               label: "Дашбоард",

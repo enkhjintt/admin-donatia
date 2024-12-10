@@ -57,7 +57,7 @@ const SelectProjectStatusItem: React.FC<IProps> = ({
         placeholder={placeholder}
         onChange={onChange}
         options={typeItems.map((type) => ({
-          value: type.ner,
+          value: type.id,
           label: type.ner,
         }))}
       />

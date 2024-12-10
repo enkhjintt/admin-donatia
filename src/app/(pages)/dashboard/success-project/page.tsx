@@ -13,7 +13,7 @@ const SuccessProjectPage = () => {
     <>
       <SectionLayout>
         <PageHeader
-          title="Амжилттай төсөл"
+          title="Амжилттай төслийн статистик мэдээлэл"
           links={[
             {
               label: "Дашбоард",

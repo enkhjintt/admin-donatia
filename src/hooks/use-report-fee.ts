@@ -3,7 +3,6 @@ import { fetcher } from "../api/fetcher";
 import { DefaultPagination, PaginationResponse } from "@/constants";
 import useSWRImmutable from "swr/immutable";
 import { generateParams } from "@/utils/pagination-search";
-import { ProjectFeeResponse } from "@/api/ref/project-fee";
 import { ReportFeeIncome } from "@/api/report/fee-income";
 
 export function useReportFee(
@@ -11,11 +10,11 @@ export function useReportFee(
   sum_percentage_dun?: number,
   search?: {
     //end haih col zarlana
-    honog?: string;
+    garchig?: string;
     sort_by: string;
     sort_type: string;
-    begin_date?: string;
-    end_date?: string;
+    created_at?: string;
+    calculated_end_date?: string;
   }
 ) {
   const params = generateParams(pagination, search);
